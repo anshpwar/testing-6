@@ -1,0 +1,21 @@
+{
+  "generated_by": "tools/gen_manifest.py",
+  "rules": {
+    "cold_chain_limit_min": "41d90de79ca7",
+    "delivery_fee_cents": "1c10e4604189",
+    "fence_snap_tolerance_m": "7d042d921af4",
+    "fuel_surcharge_cents": "ba06643aa4ec",
+    "geofence_buffer_m": "cdd7454c8a6b",
+    "hub_handling_min": "7032a4c4ac2a",
+    "late_penalty_cents": "f42c10e5318a",
+    "max_stops_per_route": "ab7154895972",
+    "parcel_weight_class": "87b47d1f69c5",
+    "priority_surcharge_cents": "ccf2f37f7e51",
+    "redelivery_fee_cents": "e471ce1c7dad",
+    "rest_break_min": "b3af5fefd645",
+    "route_timeout_ms": "9c023bfe6f8f",
+    "service_time_s": "7750447a44c3",
+    "time_window_slack_min": "a89232c666c3",
+    "vehicle_capacity_kg": "220de80a2207"
+  }
+}
