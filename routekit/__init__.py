@@ -1,0 +1,1 @@
+"""Waybill: shared domain library."""
