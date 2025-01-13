@@ -1,0 +1,73 @@
+{
+ "depot": "depot",
+ "orders": [
+  {
+   "ref": "RK-1001",
+   "stop": "a2",
+   "weight_g": 1800,
+   "parcels": 1,
+   "window": [
+    480,
+    600
+   ]
+  },
+  {
+   "ref": "RK-1002",
+   "stop": "b3",
+   "weight_g": 12500,
+   "parcels": 3,
+   "window": [
+    540,
+    720
+   ]
+  },
+  {
+   "ref": "RK-1003",
+   "stop": "c1",
+   "weight_g": 600,
+   "parcels": 1
+  },
+  {
+   "ref": "RK-1004",
+   "stop": "hub",
+   "weight_g": 30000,
+   "parcels": 6,
+   "window": [
+    600,
+    900
+   ]
+  },
+  {
+   "ref": "RK-1005",
+   "stop": "a1",
+   "weight_g": 4200,
+   "parcels": 2
+  },
+  {
+   "ref": "RK-1006",
+   "stop": "c3",
+   "weight_g": 2500,
+   "parcels": 1,
+   "window": [
+    480,
+    1020
+   ]
+  },
+  {
+   "ref": "RK-1007",
+   "stop": "b2",
+   "weight_g": 8800,
+   "parcels": 2
+  },
+  {
+   "ref": "RK-1008",
+   "stop": "airport",
+   "weight_g": 900,
+   "parcels": 1,
+   "window": [
+    720,
+    840
+   ]
+  }
+ ]
+}
