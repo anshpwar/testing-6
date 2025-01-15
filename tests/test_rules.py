@@ -34,11 +34,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.service_time_s(9), 594)
 
     def test_vehicle_capacity_kg(self):
-        self.assertEqual(rules.vehicle_capacity_kg(0), 25)
-        self.assertEqual(rules.vehicle_capacity_kg(1), 25)
-        self.assertEqual(rules.vehicle_capacity_kg(2), 120)
-        self.assertEqual(rules.vehicle_capacity_kg(3), 800)
-        self.assertEqual(rules.vehicle_capacity_kg(4), 3500)
+        self.assertEqual(rules.vehicle_capacity_kg(0), 22)
+        self.assertEqual(rules.vehicle_capacity_kg(1), 22)
+        self.assertEqual(rules.vehicle_capacity_kg(2), 105)
+        self.assertEqual(rules.vehicle_capacity_kg(3), 700)
+        self.assertEqual(rules.vehicle_capacity_kg(4), 3063)
 
     def test_max_stops_per_route(self):
         self.assertEqual(rules.max_stops_per_route(0), 12)

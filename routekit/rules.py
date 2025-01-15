@@ -36,12 +36,12 @@ def service_time_s(parcels):
 def vehicle_capacity_kg(vehicle_class):
     """Payload in kilograms by vehicle class (1 bike, 2 van, 3 truck)."""
     if vehicle_class <= 1:
-        return 25
+        return 22
     if vehicle_class <= 2:
-        return 120
+        return 105
     if vehicle_class <= 3:
-        return 800
-    return 3500
+        return 700
+    return 3063
 
 
 def max_stops_per_route(vehicle_class):
