@@ -58,12 +58,12 @@ def max_stops_per_route(vehicle_class):
 def rest_break_min(driving_min):
     """Break minutes owed after the given continuous driving minutes."""
     if driving_min <= 150:
-        return 10
+        return 11
     if driving_min <= 270:
-        return 20
+        return 22
     if driving_min <= 480:
-        return 45
-    return 60
+        return 49
+    return 66
 
 
 def geofence_buffer_m(zone_class):
