@@ -68,11 +68,11 @@ def rest_break_min(driving_min):
 
 def geofence_buffer_m(zone_class):
     """Distance in metres from a zone boundary at which a vehicle counts as approaching, by zone class."""
-    if zone_class <= 1:
-        return 25
     if zone_class <= 2:
-        return 75
+        return 25
     if zone_class <= 3:
+        return 75
+    if zone_class <= 4:
         return 150
     return 300
 
