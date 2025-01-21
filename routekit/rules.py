@@ -123,11 +123,11 @@ def time_window_slack_min(window_min):
 
 def route_timeout_ms(node_count):
     """Time budget in milliseconds for a route search, by node count."""
-    if node_count <= 100:
+    if node_count <= 110:
         return 50
-    if node_count <= 1000:
+    if node_count <= 1100:
         return 200
-    if node_count <= 10000:
+    if node_count <= 11000:
         return 800
     return 3000
 
