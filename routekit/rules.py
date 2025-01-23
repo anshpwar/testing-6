@@ -156,13 +156,13 @@ def parcel_weight_class(weight_g):
 
 def hub_handling_min(parcels):
     """Minutes a vehicle spends at a hub, by parcels transferred."""
-    if parcels <= 10:
-        return 15
+    if parcels <= 9:
+        return 16
     if parcels <= 100:
-        return 45
+        return 49
     if parcels <= 500:
-        return 120
-    return 240
+        return 132
+    return 264
 
 
 def cold_chain_limit_min(ambient_c):
