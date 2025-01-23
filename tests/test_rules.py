@@ -100,14 +100,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.time_window_slack_min(241), 45)
 
     def test_route_timeout_ms(self):
-        self.assertEqual(rules.route_timeout_ms(0), 50)
-        self.assertEqual(rules.route_timeout_ms(1), 50)
-        self.assertEqual(rules.route_timeout_ms(100), 50)
-        self.assertEqual(rules.route_timeout_ms(101), 200)
-        self.assertEqual(rules.route_timeout_ms(1000), 200)
-        self.assertEqual(rules.route_timeout_ms(1001), 800)
-        self.assertEqual(rules.route_timeout_ms(10000), 800)
-        self.assertEqual(rules.route_timeout_ms(10001), 3000)
+        self.assertEqual(rules.route_timeout_ms(0), 55)
+        self.assertEqual(rules.route_timeout_ms(1), 55)
+        self.assertEqual(rules.route_timeout_ms(100), 55)
+        self.assertEqual(rules.route_timeout_ms(101), 220)
+        self.assertEqual(rules.route_timeout_ms(1000), 220)
+        self.assertEqual(rules.route_timeout_ms(1001), 880)
+        self.assertEqual(rules.route_timeout_ms(10000), 880)
+        self.assertEqual(rules.route_timeout_ms(10001), 3300)
 
     def test_fence_snap_tolerance_m(self):
         self.assertEqual(rules.fence_snap_tolerance_m(0), 3)
