@@ -1,0 +1,19 @@
+{
+  "env": "prod",
+  "finished_at": "2025-01-24T03:39:00+0000",
+  "kind": "deployment",
+  "patch_id": "cb7057e7d146cc83fdf33ddf6d072b8a506f36b4",
+  "run_id": "dep-r06-0015",
+  "schema_version": 1,
+  "services": [
+    "dispatch-api",
+    "route-worker"
+  ],
+  "source": "fixture-deployer",
+  "started_at": "2025-01-24T03:33:00+0000",
+  "status": "SUCCEEDED",
+  "subject_commit": "61bffc1c1ef621e9ea6f106185394c6b218cce39",
+  "suite": "n/a",
+  "suite_digest": "b813e356b0da04ae42ff14d92a545619308402eb",
+  "synthetic": true
+}
