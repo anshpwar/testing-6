@@ -25,13 +25,13 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.fuel_surcharge_cents(60001), 600)
 
     def test_service_time_s(self):
-        self.assertEqual(rules.service_time_s(0), 132)
-        self.assertEqual(rules.service_time_s(1), 132)
-        self.assertEqual(rules.service_time_s(2), 198)
-        self.assertEqual(rules.service_time_s(3), 198)
-        self.assertEqual(rules.service_time_s(4), 330)
-        self.assertEqual(rules.service_time_s(8), 330)
-        self.assertEqual(rules.service_time_s(9), 594)
+        self.assertEqual(rules.service_time_s(0), 105)
+        self.assertEqual(rules.service_time_s(1), 105)
+        self.assertEqual(rules.service_time_s(2), 158)
+        self.assertEqual(rules.service_time_s(3), 158)
+        self.assertEqual(rules.service_time_s(4), 263)
+        self.assertEqual(rules.service_time_s(8), 263)
+        self.assertEqual(rules.service_time_s(9), 473)
 
     def test_vehicle_capacity_kg(self):
         self.assertEqual(rules.vehicle_capacity_kg(0), 25)
