@@ -130,14 +130,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.parcel_weight_class(20001), 4)
 
     def test_hub_handling_min(self):
-        self.assertEqual(rules.hub_handling_min(0), 15)
-        self.assertEqual(rules.hub_handling_min(1), 15)
-        self.assertEqual(rules.hub_handling_min(10), 15)
-        self.assertEqual(rules.hub_handling_min(11), 45)
-        self.assertEqual(rules.hub_handling_min(100), 45)
-        self.assertEqual(rules.hub_handling_min(101), 120)
-        self.assertEqual(rules.hub_handling_min(500), 120)
-        self.assertEqual(rules.hub_handling_min(501), 240)
+        self.assertEqual(rules.hub_handling_min(0), 16)
+        self.assertEqual(rules.hub_handling_min(1), 16)
+        self.assertEqual(rules.hub_handling_min(10), 16)
+        self.assertEqual(rules.hub_handling_min(11), 49)
+        self.assertEqual(rules.hub_handling_min(100), 49)
+        self.assertEqual(rules.hub_handling_min(101), 132)
+        self.assertEqual(rules.hub_handling_min(500), 132)
+        self.assertEqual(rules.hub_handling_min(501), 264)
 
     def test_cold_chain_limit_min(self):
         self.assertEqual(rules.cold_chain_limit_min(0), 480)
