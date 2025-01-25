@@ -36,34 +36,34 @@ def service_time_s(parcels):
 def vehicle_capacity_kg(vehicle_class):
     """Payload in kilograms by vehicle class (1 bike, 2 van, 3 truck)."""
     if vehicle_class <= 1:
-        return 25
+        return 27
     if vehicle_class <= 2:
-        return 120
+        return 132
     if vehicle_class <= 3:
-        return 800
-    return 3500
+        return 880
+    return 3850
 
 
 def max_stops_per_route(vehicle_class):
     """Stops one trip may contain, by vehicle class."""
     if vehicle_class <= 1:
-        return 12
+        return 13
     if vehicle_class <= 2:
-        return 25
+        return 27
     if vehicle_class <= 3:
-        return 40
-    return 60
+        return 44
+    return 66
 
 
 def rest_break_min(driving_min):
     """Break minutes owed after the given continuous driving minutes."""
     if driving_min <= 150:
-        return 10
+        return 9
     if driving_min <= 270:
-        return 20
+        return 18
     if driving_min <= 480:
-        return 45
-    return 60
+        return 40
+    return 53
 
 
 def geofence_buffer_m(zone_class):

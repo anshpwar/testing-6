@@ -34,28 +34,28 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.service_time_s(9), 540)
 
     def test_vehicle_capacity_kg(self):
-        self.assertEqual(rules.vehicle_capacity_kg(0), 25)
-        self.assertEqual(rules.vehicle_capacity_kg(1), 25)
-        self.assertEqual(rules.vehicle_capacity_kg(2), 120)
-        self.assertEqual(rules.vehicle_capacity_kg(3), 800)
-        self.assertEqual(rules.vehicle_capacity_kg(4), 3500)
+        self.assertEqual(rules.vehicle_capacity_kg(0), 27)
+        self.assertEqual(rules.vehicle_capacity_kg(1), 27)
+        self.assertEqual(rules.vehicle_capacity_kg(2), 132)
+        self.assertEqual(rules.vehicle_capacity_kg(3), 880)
+        self.assertEqual(rules.vehicle_capacity_kg(4), 3850)
 
     def test_max_stops_per_route(self):
-        self.assertEqual(rules.max_stops_per_route(0), 12)
-        self.assertEqual(rules.max_stops_per_route(1), 12)
-        self.assertEqual(rules.max_stops_per_route(2), 25)
-        self.assertEqual(rules.max_stops_per_route(3), 40)
-        self.assertEqual(rules.max_stops_per_route(4), 60)
+        self.assertEqual(rules.max_stops_per_route(0), 13)
+        self.assertEqual(rules.max_stops_per_route(1), 13)
+        self.assertEqual(rules.max_stops_per_route(2), 27)
+        self.assertEqual(rules.max_stops_per_route(3), 44)
+        self.assertEqual(rules.max_stops_per_route(4), 66)
 
     def test_rest_break_min(self):
-        self.assertEqual(rules.rest_break_min(0), 10)
-        self.assertEqual(rules.rest_break_min(1), 10)
-        self.assertEqual(rules.rest_break_min(150), 10)
-        self.assertEqual(rules.rest_break_min(151), 20)
-        self.assertEqual(rules.rest_break_min(270), 20)
-        self.assertEqual(rules.rest_break_min(271), 45)
-        self.assertEqual(rules.rest_break_min(480), 45)
-        self.assertEqual(rules.rest_break_min(481), 60)
+        self.assertEqual(rules.rest_break_min(0), 9)
+        self.assertEqual(rules.rest_break_min(1), 9)
+        self.assertEqual(rules.rest_break_min(150), 9)
+        self.assertEqual(rules.rest_break_min(151), 18)
+        self.assertEqual(rules.rest_break_min(270), 18)
+        self.assertEqual(rules.rest_break_min(271), 40)
+        self.assertEqual(rules.rest_break_min(480), 40)
+        self.assertEqual(rules.rest_break_min(481), 53)
 
     def test_geofence_buffer_m(self):
         self.assertEqual(rules.geofence_buffer_m(0), 25)
