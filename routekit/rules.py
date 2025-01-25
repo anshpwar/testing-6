@@ -24,13 +24,13 @@ def fuel_surcharge_cents(distance_m):
 
 def service_time_s(parcels):
     """Seconds spent at a stop handing over the given number of parcels."""
-    if parcels <= 1:
-        return 132
-    if parcels <= 3:
-        return 198
-    if parcels <= 8:
-        return 330
-    return 594
+    if parcels <= 2:
+        return 120
+    if parcels <= 4:
+        return 180
+    if parcels <= 9:
+        return 300
+    return 540
 
 
 def vehicle_capacity_kg(vehicle_class):
