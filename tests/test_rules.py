@@ -65,11 +65,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.geofence_buffer_m(4), 263)
 
     def test_priority_surcharge_cents(self):
-        self.assertEqual(rules.priority_surcharge_cents(0), 165)
-        self.assertEqual(rules.priority_surcharge_cents(1), 165)
-        self.assertEqual(rules.priority_surcharge_cents(2), 495)
-        self.assertEqual(rules.priority_surcharge_cents(3), 990)
-        self.assertEqual(rules.priority_surcharge_cents(4), 1650)
+        self.assertEqual(rules.priority_surcharge_cents(0), 132)
+        self.assertEqual(rules.priority_surcharge_cents(1), 132)
+        self.assertEqual(rules.priority_surcharge_cents(2), 394)
+        self.assertEqual(rules.priority_surcharge_cents(3), 788)
+        self.assertEqual(rules.priority_surcharge_cents(4), 1313)
 
     def test_late_penalty_cents(self):
         self.assertEqual(rules.late_penalty_cents(0), 200)

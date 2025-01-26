@@ -80,12 +80,12 @@ def geofence_buffer_m(zone_class):
 def priority_surcharge_cents(priority):
     """Surcharge in cents for expedited handling, by priority level."""
     if priority <= 1:
-        return 165
+        return 132
     if priority <= 2:
-        return 495
+        return 394
     if priority <= 3:
-        return 990
-    return 1650
+        return 788
+    return 1313
 
 
 def late_penalty_cents(minutes_late):
