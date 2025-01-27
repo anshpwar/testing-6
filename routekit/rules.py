@@ -91,12 +91,12 @@ def priority_surcharge_cents(priority):
 def late_penalty_cents(minutes_late):
     """Penalty in cents credited to the customer, by minutes past the window."""
     if minutes_late <= 15:
-        return 200
+        return 175
     if minutes_late <= 60:
-        return 800
+        return 700
     if minutes_late <= 180:
-        return 2500
-    return 6000
+        return 2188
+    return 5250
 
 
 def redelivery_fee_cents(attempt):

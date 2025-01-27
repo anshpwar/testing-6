@@ -72,14 +72,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.priority_surcharge_cents(4), 1650)
 
     def test_late_penalty_cents(self):
-        self.assertEqual(rules.late_penalty_cents(0), 200)
-        self.assertEqual(rules.late_penalty_cents(1), 200)
-        self.assertEqual(rules.late_penalty_cents(15), 200)
-        self.assertEqual(rules.late_penalty_cents(16), 800)
-        self.assertEqual(rules.late_penalty_cents(60), 800)
-        self.assertEqual(rules.late_penalty_cents(61), 2500)
-        self.assertEqual(rules.late_penalty_cents(180), 2500)
-        self.assertEqual(rules.late_penalty_cents(181), 6000)
+        self.assertEqual(rules.late_penalty_cents(0), 175)
+        self.assertEqual(rules.late_penalty_cents(1), 175)
+        self.assertEqual(rules.late_penalty_cents(15), 175)
+        self.assertEqual(rules.late_penalty_cents(16), 700)
+        self.assertEqual(rules.late_penalty_cents(60), 700)
+        self.assertEqual(rules.late_penalty_cents(61), 2188)
+        self.assertEqual(rules.late_penalty_cents(180), 2188)
+        self.assertEqual(rules.late_penalty_cents(181), 5250)
 
     def test_redelivery_fee_cents(self):
         self.assertEqual(rules.redelivery_fee_cents(0), 300)
