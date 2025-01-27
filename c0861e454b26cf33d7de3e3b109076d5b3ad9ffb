@@ -1,0 +1,19 @@
+{
+  "env": "uat",
+  "finished_at": "2025-01-27T05:12:00+0000",
+  "kind": "deployment",
+  "patch_id": "09abcc1bcf415230bcc4f82ec78cbffd78999dbd",
+  "run_id": "dep-r06-0019",
+  "schema_version": 1,
+  "services": [
+    "dispatch-api",
+    "route-worker"
+  ],
+  "source": "fixture-deployer",
+  "started_at": "2025-01-27T05:06:00+0000",
+  "status": "SUCCEEDED",
+  "subject_commit": "c0861e454b26cf33d7de3e3b109076d5b3ad9ffb",
+  "suite": "n/a",
+  "suite_digest": "6192ba4ca41bda7d641d6b9d94880db65468f2cd",
+  "synthetic": true
+}
