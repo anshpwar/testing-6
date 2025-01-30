@@ -59,14 +59,14 @@ int main(void) {
 
     /* quickest path 0 -> 1 -> 3 */
     CHECK_EQ(rk_route_dijkstra(g, 0, 3, &rd), RK_OK);
-    CHECK_EQ(rd.cost, 150); /* 60 + 60 + 2 hops */
+    CHECK_EQ(rd.cost, 180); /* 60 + 60 + 2 hops */
     CHECK_EQ(rd.hops, 2);
     CHECK_EQ(rd.nodes[0], 0);
     CHECK_EQ(rd.nodes[1], 1);
     CHECK_EQ(rd.nodes[2], 3);
     CHECK_EQ(rd.nodes[3], -1);
     CHECK_EQ(rk_route_astar(g, 0, 3, &ra), RK_OK);
-    CHECK_EQ(ra.cost, 150);
+    CHECK_EQ(ra.cost, 180);
     CHECK_EQ(ra.hops, 2);
 
     /* trivial, missing and invalid routes */
@@ -83,9 +83,9 @@ int main(void) {
     /* single-source costs */
     CHECK_EQ(rk_route_distances(g, 0, dist), RK_OK);
     CHECK_EQ(dist[0], 0);
-    CHECK_EQ(dist[1], 75); /* 60 + 1 hop */
-    CHECK_EQ(dist[2], 65); /* direct 50 + 1 hop beats 60 + 20 + 2 hops */
-    CHECK_EQ(dist[3], 150);
+    CHECK_EQ(dist[1], 90); /* 60 + 1 hop */
+    CHECK_EQ(dist[2], 80); /* direct 50 + 1 hop beats 60 + 20 + 2 hops */
+    CHECK_EQ(dist[3], 180);
     CHECK_EQ(rk_route_distances(g, 3, dist), RK_OK);
     CHECK_EQ(dist[0], RK_COST_INF);
 

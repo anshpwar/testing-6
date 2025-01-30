@@ -14,8 +14,8 @@
 #define RK_MAX_SPEED_KMH 130
 #define RK_COST_INF INT32_MAX
 
-/* Seconds added to every edge traversal for signals, turns and kerbside handling. */
-#define RK_HOP_PENALTY_S 15
+/* Seconds added to every edge traversal for signals, turns and kerbside handling (raised after the winter review). */
+#define RK_HOP_PENALTY_S 30
 
 enum {
     RK_OK = 0,

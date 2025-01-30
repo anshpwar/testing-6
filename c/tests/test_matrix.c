@@ -18,12 +18,12 @@ int main(void) {
 
     CHECK_EQ(rk_matrix_build(g, stops, 3, m), RK_OK);
     CHECK_EQ(m[0], 0);
-    CHECK_EQ(m[1], 75); /* 0 -> 1: 60 + 1 hop */
-    CHECK_EQ(m[2], 150); /* 0 -> 3: 120 + 2 hops */
-    CHECK_EQ(m[3], 240); /* 1 -> 0 goes round through 3 */
+    CHECK_EQ(m[1], 90); /* 0 -> 1: 60 + 1 hop */
+    CHECK_EQ(m[2], 180); /* 0 -> 3: 120 + 2 hops */
+    CHECK_EQ(m[3], 270); /* 1 -> 0 goes round through 3 */
     CHECK_EQ(m[4], 0);
-    CHECK_EQ(m[5], 75);
-    CHECK_EQ(m[6], 165);
+    CHECK_EQ(m[5], 90);
+    CHECK_EQ(m[6], 180);
     CHECK_EQ(m[8], 0);
 
     /* a node the stops cannot reach is reported as infinite */
