@@ -59,7 +59,7 @@ class Polygon(ctypes.Structure):
 
 
 class Route(ctypes.Structure):
-    _fields_ = [("cost", i32), ("hops", i32), ("nodes", i32 * MAX_PATH)]
+    _fields_ = [("cost", i32), ("hops", i32), ("expanded", i32), ("nodes", i32 * MAX_PATH)]
 
 
 PROTOTYPES = {
@@ -145,10 +145,11 @@ class Path:
     cost: int
     hops: int
     nodes: tuple
+    expanded: int = 0
 
 
 def _path(r):
-    return Path(r.cost, r.hops, tuple(r.nodes[: r.hops + 1]))
+    return Path(r.cost, r.hops, tuple(r.nodes[: r.hops + 1]), r.expanded)
 
 
 class Graph:

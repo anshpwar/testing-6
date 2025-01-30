@@ -8,6 +8,7 @@
 typedef struct {
     int32_t cost;
     int32_t hops;
+    int32_t expanded; /* nodes taken off the queue by the search */
     int32_t nodes[RK_MAX_PATH];
 } rk_route;
 

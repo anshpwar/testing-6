@@ -54,7 +54,7 @@ int main(void) {
 
     /* layout */
     CHECK_EQ(rk_sizeof_route(), sizeof(rk_route));
-    CHECK_EQ(sizeof(rk_route), 4 + 4 + 4 * RK_MAX_PATH);
+    CHECK_EQ(sizeof(rk_route), 4 + 4 + 4 + 4 * RK_MAX_PATH);
     CHECK_EQ(rk_hop_penalty_s(), RK_HOP_PENALTY_S);
 
     /* quickest path 0 -> 1 -> 3 */
@@ -68,6 +68,8 @@ int main(void) {
     CHECK_EQ(rk_route_astar(g, 0, 3, &ra), RK_OK);
     CHECK_EQ(ra.cost, 180);
     CHECK_EQ(ra.hops, 2);
+    CHECK(ra.expanded >= ra.hops + 1);
+    CHECK(rd.expanded >= rd.hops + 1);
 
     /* trivial, missing and invalid routes */
     CHECK_EQ(rk_route_dijkstra(g, 2, 2, &rd), RK_OK);

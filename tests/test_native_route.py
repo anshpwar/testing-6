@@ -83,7 +83,13 @@ class RouteTests(unittest.TestCase):
     def test_route_layout_offsets(self):
         self.assertEqual(ctypes.sizeof(native.Route), native.route_sizeof())
         self.assertEqual(native.Route.hops.offset, 4)
-        self.assertEqual(native.Route.nodes.offset, 8)
+        self.assertEqual(native.Route.expanded.offset, 8)
+        self.assertEqual(native.Route.nodes.offset, 12)
+
+    def test_search_effort_is_reported(self):
+        g = diamond()
+        path = g.dijkstra(0, 3)
+        self.assertGreaterEqual(path.expanded, path.hops + 1)
 
     def test_hop_penalty_matches_library(self):
         self.assertEqual(native.hop_penalty_s(), native.HOP_PENALTY_S)

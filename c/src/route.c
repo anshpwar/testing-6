@@ -13,9 +13,11 @@ static int32_t heuristic(const rk_graph *g, int node, int goal) {
 }
 
 /* Label-correcting search. goal < 0 explores everything; use_h turns it into A*. */
-static int search(const rk_graph *g, int from, int goal, int use_h, int32_t *dist, int32_t *prev) {
+static int search(const rk_graph *g, int from, int goal, int use_h, int32_t *dist, int32_t *prev, int32_t *expanded) {
     rk_heap heap;
     int i;
+
+    *expanded = 0;
     if (g == NULL || from < 0 || from >= g->n_nodes || goal >= g->n_nodes) {
         return RK_ERR_ARG;
     }
@@ -38,6 +40,7 @@ static int search(const rk_graph *g, int from, int goal, int use_h, int32_t *dis
         if (key > dist[u] + (use_h ? heuristic(g, u, goal) : 0)) {
             continue; /* stale queue entry */
         }
+        (*expanded)++;
         if (u == goal) {
             return RK_OK;
         }
@@ -79,15 +82,20 @@ static int build_path(const int32_t *dist, const int32_t *prev, int to, rk_route
 static int route(const rk_graph *g, int from, int to, int use_h, rk_route *out) {
     int32_t dist[RK_MAX_NODES];
     int32_t prev[RK_MAX_NODES];
+    int32_t expanded = 0;
     int rc;
     if (out == NULL || to < 0) {
         return RK_ERR_ARG;
     }
-    rc = search(g, from, to, use_h, dist, prev);
+    rc = search(g, from, to, use_h, dist, prev, &expanded);
     if (rc != RK_OK) {
         return rc;
     }
-    return build_path(dist, prev, to, out);
+    rc = build_path(dist, prev, to, out);
+    if (rc == RK_OK) {
+        out->expanded = expanded;
+    }
+    return rc;
 }
 
 int rk_route_dijkstra(const rk_graph *g, int from, int to, rk_route *out) {
@@ -100,10 +108,11 @@ int rk_route_astar(const rk_graph *g, int from, int to, rk_route *out) {
 
 int rk_route_distances(const rk_graph *g, int from, int32_t *out) {
     int32_t prev[RK_MAX_NODES];
+    int32_t expanded = 0;
     if (out == NULL) {
         return RK_ERR_ARG;
     }
-    return search(g, from, -1, 0, out, prev);
+    return search(g, from, -1, 0, out, prev, &expanded);
 }
 
 int32_t rk_hop_penalty_s(void) {
