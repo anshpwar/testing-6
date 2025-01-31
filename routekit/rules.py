@@ -135,12 +135,12 @@ def route_timeout_ms(node_count):
 def fence_snap_tolerance_m(accuracy_m):
     """Metres a poor GPS fix may be snapped into a zone, by reported accuracy in metres."""
     if accuracy_m <= 5:
-        return 3
+        return 4
     if accuracy_m <= 20:
-        return 10
+        return 11
     if accuracy_m <= 50:
-        return 25
-    return 80
+        return 27
+    return 88
 
 
 def parcel_weight_class(weight_g):
