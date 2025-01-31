@@ -113,11 +113,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.fence_snap_tolerance_m(0), 3)
         self.assertEqual(rules.fence_snap_tolerance_m(1), 3)
         self.assertEqual(rules.fence_snap_tolerance_m(5), 3)
-        self.assertEqual(rules.fence_snap_tolerance_m(6), 10)
+        self.assertEqual(rules.fence_snap_tolerance_m(6), 3)
         self.assertEqual(rules.fence_snap_tolerance_m(20), 10)
-        self.assertEqual(rules.fence_snap_tolerance_m(21), 25)
+        self.assertEqual(rules.fence_snap_tolerance_m(21), 10)
         self.assertEqual(rules.fence_snap_tolerance_m(50), 25)
-        self.assertEqual(rules.fence_snap_tolerance_m(51), 80)
+        self.assertEqual(rules.fence_snap_tolerance_m(51), 25)
 
     def test_parcel_weight_class(self):
         self.assertEqual(rules.parcel_weight_class(0), 1)
