@@ -46,11 +46,11 @@ def vehicle_capacity_kg(vehicle_class):
 
 def max_stops_per_route(vehicle_class):
     """Stops one trip may contain, by vehicle class."""
-    if vehicle_class <= 1:
-        return 12
     if vehicle_class <= 2:
-        return 25
+        return 12
     if vehicle_class <= 3:
+        return 25
+    if vehicle_class <= 4:
         return 40
     return 60
 
