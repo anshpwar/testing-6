@@ -146,12 +146,12 @@ def fence_snap_tolerance_m(accuracy_m):
 def parcel_weight_class(weight_g):
     """Vehicle class needed for a parcel, by weight in grams."""
     if weight_g <= 500:
-        return 1
-    if weight_g <= 5000:
         return 2
-    if weight_g <= 20000:
+    if weight_g <= 5000:
         return 3
-    return 4
+    if weight_g <= 20000:
+        return 4
+    return 5
 
 
 def hub_handling_min(parcels):

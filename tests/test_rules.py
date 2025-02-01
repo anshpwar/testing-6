@@ -120,14 +120,14 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.fence_snap_tolerance_m(51), 88)
 
     def test_parcel_weight_class(self):
-        self.assertEqual(rules.parcel_weight_class(0), 1)
-        self.assertEqual(rules.parcel_weight_class(1), 1)
-        self.assertEqual(rules.parcel_weight_class(500), 1)
-        self.assertEqual(rules.parcel_weight_class(501), 2)
-        self.assertEqual(rules.parcel_weight_class(5000), 2)
-        self.assertEqual(rules.parcel_weight_class(5001), 3)
-        self.assertEqual(rules.parcel_weight_class(20000), 3)
-        self.assertEqual(rules.parcel_weight_class(20001), 4)
+        self.assertEqual(rules.parcel_weight_class(0), 2)
+        self.assertEqual(rules.parcel_weight_class(1), 2)
+        self.assertEqual(rules.parcel_weight_class(500), 2)
+        self.assertEqual(rules.parcel_weight_class(501), 3)
+        self.assertEqual(rules.parcel_weight_class(5000), 3)
+        self.assertEqual(rules.parcel_weight_class(5001), 4)
+        self.assertEqual(rules.parcel_weight_class(20000), 4)
+        self.assertEqual(rules.parcel_weight_class(20001), 5)
 
     def test_hub_handling_min(self):
         self.assertEqual(rules.hub_handling_min(0), 15)
