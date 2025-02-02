@@ -41,11 +41,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.vehicle_capacity_kg(4), 3850)
 
     def test_max_stops_per_route(self):
-        self.assertEqual(rules.max_stops_per_route(0), 12)
-        self.assertEqual(rules.max_stops_per_route(1), 12)
-        self.assertEqual(rules.max_stops_per_route(2), 25)
-        self.assertEqual(rules.max_stops_per_route(3), 40)
-        self.assertEqual(rules.max_stops_per_route(4), 60)
+        self.assertEqual(rules.max_stops_per_route(0), 11)
+        self.assertEqual(rules.max_stops_per_route(1), 11)
+        self.assertEqual(rules.max_stops_per_route(2), 22)
+        self.assertEqual(rules.max_stops_per_route(3), 35)
+        self.assertEqual(rules.max_stops_per_route(4), 53)
 
     def test_rest_break_min(self):
         self.assertEqual(rules.rest_break_min(0), 10)
