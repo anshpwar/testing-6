@@ -167,10 +167,10 @@ def hub_handling_min(parcels):
 
 def cold_chain_limit_min(ambient_c):
     """Maximum transit minutes for chilled goods, by ambient temperature in Celsius."""
-    if ambient_c <= 10:
+    if ambient_c <= 11:
         return 480
-    if ambient_c <= 20:
+    if ambient_c <= 22:
         return 240
-    if ambient_c <= 30:
+    if ambient_c <= 33:
         return 120
     return 60
