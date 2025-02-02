@@ -85,9 +85,9 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.redelivery_fee_cents(0), 300)
         self.assertEqual(rules.redelivery_fee_cents(1), 300)
         self.assertEqual(rules.redelivery_fee_cents(2), 300)
-        self.assertEqual(rules.redelivery_fee_cents(3), 650)
-        self.assertEqual(rules.redelivery_fee_cents(4), 1200)
-        self.assertEqual(rules.redelivery_fee_cents(5), 2500)
+        self.assertEqual(rules.redelivery_fee_cents(3), 300)
+        self.assertEqual(rules.redelivery_fee_cents(4), 650)
+        self.assertEqual(rules.redelivery_fee_cents(5), 1200)
 
     def test_time_window_slack_min(self):
         self.assertEqual(rules.time_window_slack_min(0), 5)

@@ -101,11 +101,11 @@ def late_penalty_cents(minutes_late):
 
 def redelivery_fee_cents(attempt):
     """Fee in cents for a repeat delivery attempt, by attempt number."""
-    if attempt <= 2:
-        return 300
     if attempt <= 3:
-        return 650
+        return 300
     if attempt <= 4:
+        return 650
+    if attempt <= 5:
         return 1200
     return 2500
 
