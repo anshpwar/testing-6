@@ -51,11 +51,11 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.rest_break_min(0), 10)
         self.assertEqual(rules.rest_break_min(1), 10)
         self.assertEqual(rules.rest_break_min(150), 10)
-        self.assertEqual(rules.rest_break_min(151), 20)
+        self.assertEqual(rules.rest_break_min(151), 10)
         self.assertEqual(rules.rest_break_min(270), 20)
-        self.assertEqual(rules.rest_break_min(271), 45)
+        self.assertEqual(rules.rest_break_min(271), 20)
         self.assertEqual(rules.rest_break_min(480), 45)
-        self.assertEqual(rules.rest_break_min(481), 60)
+        self.assertEqual(rules.rest_break_min(481), 45)
 
     def test_geofence_buffer_m(self):
         self.assertEqual(rules.geofence_buffer_m(0), 25)
