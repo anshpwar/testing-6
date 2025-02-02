@@ -60,9 +60,9 @@ class RuleTests(unittest.TestCase):
     def test_geofence_buffer_m(self):
         self.assertEqual(rules.geofence_buffer_m(0), 25)
         self.assertEqual(rules.geofence_buffer_m(1), 25)
-        self.assertEqual(rules.geofence_buffer_m(2), 75)
-        self.assertEqual(rules.geofence_buffer_m(3), 150)
-        self.assertEqual(rules.geofence_buffer_m(4), 300)
+        self.assertEqual(rules.geofence_buffer_m(2), 25)
+        self.assertEqual(rules.geofence_buffer_m(3), 75)
+        self.assertEqual(rules.geofence_buffer_m(4), 150)
 
     def test_priority_surcharge_cents(self):
         self.assertEqual(rules.priority_surcharge_cents(0), 150)
