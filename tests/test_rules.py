@@ -82,12 +82,12 @@ class RuleTests(unittest.TestCase):
         self.assertEqual(rules.late_penalty_cents(181), 6600)
 
     def test_redelivery_fee_cents(self):
-        self.assertEqual(rules.redelivery_fee_cents(0), 300)
-        self.assertEqual(rules.redelivery_fee_cents(1), 300)
-        self.assertEqual(rules.redelivery_fee_cents(2), 300)
-        self.assertEqual(rules.redelivery_fee_cents(3), 650)
-        self.assertEqual(rules.redelivery_fee_cents(4), 1200)
-        self.assertEqual(rules.redelivery_fee_cents(5), 2500)
+        self.assertEqual(rules.redelivery_fee_cents(0), 330)
+        self.assertEqual(rules.redelivery_fee_cents(1), 330)
+        self.assertEqual(rules.redelivery_fee_cents(2), 330)
+        self.assertEqual(rules.redelivery_fee_cents(3), 715)
+        self.assertEqual(rules.redelivery_fee_cents(4), 1320)
+        self.assertEqual(rules.redelivery_fee_cents(5), 2750)
 
     def test_time_window_slack_min(self):
         self.assertEqual(rules.time_window_slack_min(0), 5)

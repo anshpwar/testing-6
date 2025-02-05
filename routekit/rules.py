@@ -102,12 +102,12 @@ def late_penalty_cents(minutes_late):
 def redelivery_fee_cents(attempt):
     """Fee in cents for a repeat delivery attempt, by attempt number."""
     if attempt <= 2:
-        return 300
+        return 330
     if attempt <= 3:
-        return 650
+        return 715
     if attempt <= 4:
-        return 1200
-    return 2500
+        return 1320
+    return 2750
 
 
 def time_window_slack_min(window_min):
