@@ -1,0 +1,245 @@
+{
+  "scenario_id": "S007",
+  "repo_id": "testing-6",
+  "title": "Two small commits on one branch and a combined commit on the other",
+  "difficulty": 4,
+  "primary_catalog_id": 7,
+  "catalog_ids": [
+    7,
+    14,
+    84
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S007/base",
+    "target": "scenario/S007/target",
+    "all_pairs": [
+      [
+        "scenario/S007/base",
+        "scenario/S007/target"
+      ]
+    ],
+    "additional_sides": {
+      "c14_rel2": "scenario/S007/c14_rel2",
+      "c14_rel3": "scenario/S007/c14_rel3"
+    }
+  },
+  "fork_commit": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+  "expected_conflicted_files": [
+    "routekit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S007/base",
+    "scenario/S007/c14_rel2",
+    "scenario/S007/c14_rel3",
+    "scenario/S007/target"
+  ],
+  "original_commits": [
+    "c644d992df96eee63aef04bd006350461301b56f",
+    "2233b410a000e8c97802e2434b349a7b22aab05e"
+  ],
+  "derived_commits": [
+    "919256acfb555ac5bd2dcc7cdcda97cba1b2b58c"
+  ],
+  "change_relationships": [
+    {
+      "a": "c644d992df96eee63aef04bd006350461301b56f",
+      "b": "919256acfb555ac5bd2dcc7cdcda97cba1b2b58c",
+      "relation": "combined"
+    },
+    {
+      "a": "2233b410a000e8c97802e2434b349a7b22aab05e",
+      "b": "919256acfb555ac5bd2dcc7cdcda97cba1b2b58c",
+      "relation": "combined"
+    }
+  ],
+  "files": [
+    "routekit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "routekit/rules.py",
+      "function": "vehicle_capacity_kg"
+    },
+    {
+      "file": "routekit/rules.py",
+      "function": "max_stops_per_route"
+    },
+    {
+      "file": "routekit/rules.py",
+      "function": "rest_break_min"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "side refs scenario/S007/rel2 and /rel3 hold the other backports",
+  "known_uncertainty": "true origin recoverable only by patch-id",
+  "expected_warnings": [
+    "combined commit hides two independent origins"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": true,
+  "assertions": [
+    {
+      "type": "diff_subset",
+      "small": [
+        "c644d992df96eee63aef04bd006350461301b56f",
+        "2233b410a000e8c97802e2434b349a7b22aab05e"
+      ],
+      "big": "919256acfb555ac5bd2dcc7cdcda97cba1b2b58c"
+    }
+  ],
+  "id": "7",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "9d7997ce9cb7d2419bf07b2bd44d102849e6adf2"
+      ],
+      "derived_commits": [
+        "7d3a9839018480ccde183fe1ef4bb7b832d4121e",
+        "fd4f7d98a15aaa1e45244ee9f5605fb7580cc221",
+        "c50d7315537fd5833b0be92d54e981ca4f3ac486"
+      ],
+      "change_relationships": [
+        {
+          "a": "9d7997ce9cb7d2419bf07b2bd44d102849e6adf2",
+          "b": "7d3a9839018480ccde183fe1ef4bb7b832d4121e",
+          "relation": "identical"
+        },
+        {
+          "a": "9d7997ce9cb7d2419bf07b2bd44d102849e6adf2",
+          "b": "fd4f7d98a15aaa1e45244ee9f5605fb7580cc221",
+          "relation": "identical"
+        },
+        {
+          "a": "9d7997ce9cb7d2419bf07b2bd44d102849e6adf2",
+          "b": "c50d7315537fd5833b0be92d54e981ca4f3ac486",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "geofence_buffer_m"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "side refs scenario/S007/rel2 and /rel3 hold the other backports",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "same change backported to three release lines"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_equal",
+          "a": "fd4f7d98a15aaa1e45244ee9f5605fb7580cc221",
+          "b": "c50d7315537fd5833b0be92d54e981ca4f3ac486"
+        },
+        {
+          "type": "trailer",
+          "commit": "c50d7315537fd5833b0be92d54e981ca4f3ac486",
+          "expect": "valid",
+          "origin": "9d7997ce9cb7d2419bf07b2bd44d102849e6adf2"
+        }
+      ],
+      "id": "7.a",
+      "catalog_id": 14
+    },
+    {
+      "original_commits": [
+        "4a0b97fd9f3512f1a5c73a0244789df0248015a5"
+      ],
+      "derived_commits": [
+        "c7b8d51e9da8e92695661ca722bd868b04db6b88"
+      ],
+      "change_relationships": [
+        {
+          "a": "4a0b97fd9f3512f1a5c73a0244789df0248015a5",
+          "b": "c7b8d51e9da8e92695661ca722bd868b04db6b88",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "priority_surcharge_cents"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "message trailer names a nonexistent commit; provenance note names an unrelated commit",
+      "known_uncertainty": "true origin recoverable only by patch-id",
+      "expected_warnings": [
+        "no provenance reference resolves to the true origin"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": true,
+      "assertions": [
+        {
+          "type": "patch_id_equal",
+          "a": "4a0b97fd9f3512f1a5c73a0244789df0248015a5",
+          "b": "c7b8d51e9da8e92695661ca722bd868b04db6b88"
+        },
+        {
+          "type": "trailer",
+          "commit": "c7b8d51e9da8e92695661ca722bd868b04db6b88",
+          "expect": "invalid",
+          "origin": "4a0b97fd9f3512f1a5c73a0244789df0248015a5"
+        },
+        {
+          "type": "note",
+          "ref": "provenance",
+          "commit": "c7b8d51e9da8e92695661ca722bd868b04db6b88",
+          "expect": "present"
+        }
+      ],
+      "id": "7.b",
+      "catalog_id": 84
+    }
+  ],
+  "patch_ids": {
+    "@S007.t1": "88917f3b9173526afdefb5f0999c8f99fb252b2f",
+    "@S007.t2": "8f3ba691ec572abc74755b6001808485d72b1cb4",
+    "@S007.b1": "e5c1a00948d684735045b7c031e4e1264522b993",
+    "@S007.c14_t1": "eb641d18d74cb248ba79e45435f18d2254b19156",
+    "@S007.c14_b1": "26146fa10ae22f8ef4c689ea6c9ff160ee02d4e5",
+    "@S007.c14_b2": "38c0345ef9bd2cff9eb234b47eca6dd52378c998",
+    "@S007.c14_b3": "38c0345ef9bd2cff9eb234b47eca6dd52378c998",
+    "@S007.c84_t1": "0f3dea15f6ddd0906b9245836ed958c43d8caa6b",
+    "@S007.c84_b1": "8599b123ee1053b5655d7f5808bed3a1ebf11730"
+  },
+  "commit_labels": {
+    "S007.F": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+    "S007.b1": "919256acfb555ac5bd2dcc7cdcda97cba1b2b58c",
+    "S007.c14_b1": "7d3a9839018480ccde183fe1ef4bb7b832d4121e",
+    "S007.c14_b2": "fd4f7d98a15aaa1e45244ee9f5605fb7580cc221",
+    "S007.c14_b3": "c50d7315537fd5833b0be92d54e981ca4f3ac486",
+    "S007.c14_b4": "754b845f01a669ee2823dbde5392ca189991dba8",
+    "S007.c14_t1": "9d7997ce9cb7d2419bf07b2bd44d102849e6adf2",
+    "S007.c14_t2": "3fffdbe73d7d4c39620fcbaed292f3b0a2d054f8",
+    "S007.c84_b0": "0e91aa2c1b1ac1c8a0295d2a86bdafdf9f1b1df5",
+    "S007.c84_b1": "c7b8d51e9da8e92695661ca722bd868b04db6b88",
+    "S007.c84_b2": "e9fd22947d34f95638be264e0d6b7024ee501aa5",
+    "S007.c84_t1": "4a0b97fd9f3512f1a5c73a0244789df0248015a5",
+    "S007.c84_t2": "c5aeec0582bde22202d660cbbe78a6bc78890e74",
+    "S007.c84_u1": "294dbef38be253731e4629f73901a2d4705755ba",
+    "S007.t1": "c644d992df96eee63aef04bd006350461301b56f",
+    "S007.t2": "2233b410a000e8c97802e2434b349a7b22aab05e",
+    "S007.t3": "4277042ff7980c1ef815f3a8a5f620ea27fb6f2c"
+  }
+}

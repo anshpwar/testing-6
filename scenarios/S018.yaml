@@ -1,0 +1,62 @@
+scenario_id: S018
+repo_id: testing-6
+title: Unreferenced test record for a rewritten commit
+difficulty: 1
+primary_catalog_id: 18
+catalog_ids:
+- 18
+expected_git_outcome: EVIDENCE_ONLY
+merge_pair:
+  base: scenario/S018/base
+  target: scenario/S018/target
+  all_pairs:
+  - - scenario/S018/base
+    - scenario/S018/target
+  additional_sides: {}
+fork_commit: '@S018.F'
+expected_conflicted_files: []
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S018/base
+- scenario/S018/target
+original_commits:
+- '@S018.t1'
+derived_commits:
+- '@S018.b1'
+- '@S018.b2'
+change_relationships:
+- a: '@S018.t1'
+  b: '@S018.b1'
+  relation: identical
+- a: '@S018.b1'
+  b: '@S018.b2'
+  relation: identical
+files:
+- routekit/rules.py
+- tests/test_rules.py
+regions:
+- file: routekit/rules.py
+  function: service_time_s
+testing_evidence: none
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- second backport adds no change; already present
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: tree_equal
+  a: '@S018.b1'
+  b: '@S018.b2'
+- type: trailer
+  commit: '@S018.b2'
+  expect: valid
+  origin: '@S018.t1'
+id: '18'
+sub_entries: []
+patch_ids:
+  '@S018.t1': cb7057e7d146cc83fdf33ddf6d072b8a506f36b4
+  '@S018.b1': cb7057e7d146cc83fdf33ddf6d072b8a506f36b4
+  '@S018.b2': null

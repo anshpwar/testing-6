@@ -1,0 +1,120 @@
+{
+  "scenario_id": "S069",
+  "repo_id": "testing-6",
+  "title": "Rule removed on one branch while the other keeps editing it",
+  "difficulty": 3,
+  "primary_catalog_id": 69,
+  "catalog_ids": [
+    69
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S069/base",
+    "target": "scenario/S069/target",
+    "all_pairs": [
+      [
+        "scenario/S069/base",
+        "scenario/S069/target"
+      ],
+      [
+        "scenario/S069/base",
+        "scenario/S069/third"
+      ],
+      [
+        "scenario/S069/base",
+        "scenario/S069/fourth"
+      ],
+      [
+        "scenario/S069/target",
+        "scenario/S069/third"
+      ],
+      [
+        "scenario/S069/target",
+        "scenario/S069/fourth"
+      ],
+      [
+        "scenario/S069/third",
+        "scenario/S069/fourth"
+      ]
+    ],
+    "additional_sides": {
+      "third": "scenario/S069/third",
+      "fourth": "scenario/S069/fourth"
+    }
+  },
+  "fork_commit": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+  "expected_conflicted_files": [
+    "routekit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S069/base",
+    "scenario/S069/fourth",
+    "scenario/S069/target",
+    "scenario/S069/third"
+  ],
+  "original_commits": [
+    "6ef8bc20cf7ca73e6395c63252c7ccce2f9d0787"
+  ],
+  "derived_commits": [
+    "882f2bb7f80cff7c0e000fb5624b6a727a064cc4",
+    "7718a3cd372c02e72ee6ee1d75637a6fac13d491",
+    "de92122ea8f49434dab675dd96262f9d9f3e15a6"
+  ],
+  "change_relationships": [
+    {
+      "a": "6ef8bc20cf7ca73e6395c63252c7ccce2f9d0787",
+      "b": "882f2bb7f80cff7c0e000fb5624b6a727a064cc4",
+      "relation": "unrelated"
+    },
+    {
+      "a": "6ef8bc20cf7ca73e6395c63252c7ccce2f9d0787",
+      "b": "7718a3cd372c02e72ee6ee1d75637a6fac13d491",
+      "relation": "unrelated"
+    },
+    {
+      "a": "6ef8bc20cf7ca73e6395c63252c7ccce2f9d0787",
+      "b": "de92122ea8f49434dab675dd96262f9d9f3e15a6",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "routekit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "routekit/rules.py",
+      "function": "route_timeout_ms"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "4 developers changed the same schedule independently"
+  ],
+  "safe_resolution_constraints": [
+    "no side may be dropped silently"
+  ],
+  "human_review_required": true,
+  "assertions": [],
+  "id": "69",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S069.x_base": "7f90af7c6331dec6bbcf01c24723fd24301d0071",
+    "@S069.x_target": "5c3a886ee88890ade7c0f2adb27b192eb951eacd",
+    "@S069.x_third": "e3bca4676feff75a08424e232da68f9e3ad7ce80",
+    "@S069.x_fourth": "e59b9c8df660972ee96e97a5f689c4c25c9cdd48"
+  },
+  "commit_labels": {
+    "S069.F": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+    "S069.x_base": "6ef8bc20cf7ca73e6395c63252c7ccce2f9d0787",
+    "S069.x_fourth": "de92122ea8f49434dab675dd96262f9d9f3e15a6",
+    "S069.x_target": "882f2bb7f80cff7c0e000fb5624b6a727a064cc4",
+    "S069.x_third": "7718a3cd372c02e72ee6ee1d75637a6fac13d491"
+  }
+}

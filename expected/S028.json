@@ -1,0 +1,209 @@
+{
+  "scenario_id": "S028",
+  "repo_id": "testing-6",
+  "title": "Source and test records disagree about which commit was verified",
+  "difficulty": 4,
+  "primary_catalog_id": 28,
+  "catalog_ids": [
+    28,
+    18,
+    40
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S028/base",
+    "target": "scenario/S028/target",
+    "all_pairs": [
+      [
+        "scenario/S028/base",
+        "scenario/S028/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+  "expected_conflicted_files": [
+    "routekit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S028/base",
+    "scenario/S028/target"
+  ],
+  "original_commits": [
+    "c0861e454b26cf33d7de3e3b109076d5b3ad9ffb"
+  ],
+  "derived_commits": [
+    "d5cf63027c8d78abd8ab7a4180b31c7508194fde"
+  ],
+  "change_relationships": [
+    {
+      "a": "c0861e454b26cf33d7de3e3b109076d5b3ad9ffb",
+      "b": "d5cf63027c8d78abd8ab7a4180b31c7508194fde",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "routekit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "routekit/rules.py",
+      "function": "hub_handling_min"
+    }
+  ],
+  "testing_evidence": "b1 carries a copy of t1's PASSED record; b1 differs from t1",
+  "deployment_evidence": "same code deployed under two commit hashes",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "evidence from another branch does not cover this version"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": true,
+  "assertions": [
+    {
+      "type": "note_subject_mismatch",
+      "ref": "ci",
+      "commit": "d5cf63027c8d78abd8ab7a4180b31c7508194fde",
+      "subject": "c0861e454b26cf33d7de3e3b109076d5b3ad9ffb"
+    },
+    {
+      "type": "patch_id_differs",
+      "a": "c0861e454b26cf33d7de3e3b109076d5b3ad9ffb",
+      "b": "d5cf63027c8d78abd8ab7a4180b31c7508194fde"
+    }
+  ],
+  "id": "28",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "f01f8e90838f5b8ac3d0613d706bafacdae5ca0c"
+      ],
+      "derived_commits": [
+        "1f42119beb3170c63798767240ec1d5723128b5e",
+        "33bc965e1b69aaeac1448c41dd18e7b97fb79a7d"
+      ],
+      "change_relationships": [
+        {
+          "a": "f01f8e90838f5b8ac3d0613d706bafacdae5ca0c",
+          "b": "1f42119beb3170c63798767240ec1d5723128b5e",
+          "relation": "identical"
+        },
+        {
+          "a": "1f42119beb3170c63798767240ec1d5723128b5e",
+          "b": "33bc965e1b69aaeac1448c41dd18e7b97fb79a7d",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "cold_chain_limit_min"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "second backport adds no change; already present"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "tree_equal",
+          "a": "1f42119beb3170c63798767240ec1d5723128b5e",
+          "b": "33bc965e1b69aaeac1448c41dd18e7b97fb79a7d"
+        },
+        {
+          "type": "trailer",
+          "commit": "33bc965e1b69aaeac1448c41dd18e7b97fb79a7d",
+          "expect": "valid",
+          "origin": "f01f8e90838f5b8ac3d0613d706bafacdae5ca0c"
+        }
+      ],
+      "id": "28.a",
+      "catalog_id": 18
+    },
+    {
+      "original_commits": [
+        "261a5d7941841f78fd31807c537ee6f11bc3ae84"
+      ],
+      "derived_commits": [
+        "61bffc1c1ef621e9ea6f106185394c6b218cce39"
+      ],
+      "change_relationships": [
+        {
+          "a": "261a5d7941841f78fd31807c537ee6f11bc3ae84",
+          "b": "61bffc1c1ef621e9ea6f106185394c6b218cce39",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "service_time_s"
+        }
+      ],
+      "testing_evidence": "t1 PASSED in prod; b1 has the same code but no record",
+      "deployment_evidence": "same code deployed under two commit hashes",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "identical code under different hashes; evidence transfers only via tree equality"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "function_equal",
+          "a": "261a5d7941841f78fd31807c537ee6f11bc3ae84",
+          "b": "61bffc1c1ef621e9ea6f106185394c6b218cce39",
+          "file": "routekit/rules.py",
+          "function": "service_time_s"
+        },
+        {
+          "type": "commit_differs",
+          "a": "261a5d7941841f78fd31807c537ee6f11bc3ae84",
+          "b": "61bffc1c1ef621e9ea6f106185394c6b218cce39"
+        }
+      ],
+      "id": "28.b",
+      "catalog_id": 40
+    }
+  ],
+  "patch_ids": {
+    "@S028.t1": "09abcc1bcf415230bcc4f82ec78cbffd78999dbd",
+    "@S028.b1": "64136ed0aeeb19a04b4913762ca2b0cc25f6962c",
+    "@S028.c18_t1": "557d0d38c74734ce510def3702ddacfb1121012c",
+    "@S028.c18_b1": "557d0d38c74734ce510def3702ddacfb1121012c",
+    "@S028.c18_b2": null,
+    "@S028.c40_t1": "cb7057e7d146cc83fdf33ddf6d072b8a506f36b4",
+    "@S028.c40_b1": "cb7057e7d146cc83fdf33ddf6d072b8a506f36b4"
+  },
+  "commit_labels": {
+    "S028.F": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+    "S028.b1": "d5cf63027c8d78abd8ab7a4180b31c7508194fde",
+    "S028.c18_b1": "1f42119beb3170c63798767240ec1d5723128b5e",
+    "S028.c18_b2": "33bc965e1b69aaeac1448c41dd18e7b97fb79a7d",
+    "S028.c18_t1": "f01f8e90838f5b8ac3d0613d706bafacdae5ca0c",
+    "S028.c40_b1": "61bffc1c1ef621e9ea6f106185394c6b218cce39",
+    "S028.c40_b2": "5d107234b1c85754f7f4b65f405e6f21240170a0",
+    "S028.c40_t1": "261a5d7941841f78fd31807c537ee6f11bc3ae84",
+    "S028.c40_t2": "ce941362c65d7f32737e154a99c10a0f52e2347e",
+    "S028.t1": "c0861e454b26cf33d7de3e3b109076d5b3ad9ffb"
+  }
+}

@@ -1,0 +1,84 @@
+{
+  "scenario_id": "S092",
+  "repo_id": "testing-6",
+  "title": "Line-ending conversion on one branch and a logic fix on the other",
+  "difficulty": 2,
+  "primary_catalog_id": 92,
+  "catalog_ids": [
+    92
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S092/base",
+    "target": "scenario/S092/target",
+    "all_pairs": [
+      [
+        "scenario/S092/base",
+        "scenario/S092/target"
+      ]
+    ],
+    "additional_sides": {}
+  },
+  "fork_commit": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+  "expected_conflicted_files": [
+    "routekit/helpers.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S092/base",
+    "scenario/S092/target"
+  ],
+  "original_commits": [
+    "33affa249fc4db1510efeab45aca9489b59b8d67"
+  ],
+  "derived_commits": [
+    "8525db823cd6785e86c742d9104f5cb90e876779"
+  ],
+  "change_relationships": [
+    {
+      "a": "8525db823cd6785e86c742d9104f5cb90e876779",
+      "b": "33affa249fc4db1510efeab45aca9489b59b8d67",
+      "relation": "unrelated"
+    }
+  ],
+  "files": [
+    "routekit/helpers.py",
+    ".gitattributes"
+  ],
+  "regions": [
+    {
+      "file": "routekit/helpers.py",
+      "function": "clip"
+    }
+  ],
+  "testing_evidence": "none",
+  "deployment_evidence": "none",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "line-ending churn makes every line differ"
+  ],
+  "safe_resolution_constraints": [
+    "keep the logic change; normalise line endings deliberately"
+  ],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "file_has_crlf",
+      "commit": "8525db823cd6785e86c742d9104f5cb90e876779",
+      "file": "routekit/helpers.py"
+    }
+  ],
+  "id": "92",
+  "sub_entries": [],
+  "patch_ids": {
+    "@S092.t1": "050563fed4fc9eefa10997ddd785996f815fcd1b",
+    "@S092.b1": "186b4222b3ef03b07a557c2725d04a638b3a76fd"
+  },
+  "commit_labels": {
+    "S092.F": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+    "S092.b1": "8525db823cd6785e86c742d9104f5cb90e876779",
+    "S092.t1": "33affa249fc4db1510efeab45aca9489b59b8d67"
+  }
+}

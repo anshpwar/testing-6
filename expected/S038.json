@@ -1,0 +1,433 @@
+{
+  "scenario_id": "S038",
+  "repo_id": "testing-6",
+  "title": "Long history with repeated edits and mixed provenance",
+  "difficulty": 5,
+  "primary_catalog_id": 38,
+  "catalog_ids": [
+    38,
+    12,
+    59,
+    19,
+    17,
+    26
+  ],
+  "expected_git_outcome": "CONFLICT",
+  "merge_pair": {
+    "base": "scenario/S038/base",
+    "target": "scenario/S038/target",
+    "all_pairs": [
+      [
+        "scenario/S038/base",
+        "scenario/S038/target"
+      ]
+    ],
+    "additional_sides": {
+      "c59_newbase": "scenario/S038/c59_newbase",
+      "c17_mid": "scenario/S038/c17_mid"
+    }
+  },
+  "fork_commit": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+  "expected_conflicted_files": [
+    "routekit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "validation_method": "merge",
+  "clone_profile": "full",
+  "branches": [
+    "scenario/S038/base",
+    "scenario/S038/c17_mid",
+    "scenario/S038/c59_newbase",
+    "scenario/S038/target"
+  ],
+  "original_commits": [
+    "fc59cc0ac7d5a339050aff20223dc174ba8ae2d4"
+  ],
+  "derived_commits": [
+    "252be45680ca3ebc2c0d5e47213579983c6f054f"
+  ],
+  "change_relationships": [
+    {
+      "a": "fc59cc0ac7d5a339050aff20223dc174ba8ae2d4",
+      "b": "252be45680ca3ebc2c0d5e47213579983c6f054f",
+      "relation": "partial"
+    }
+  ],
+  "files": [
+    "routekit/rules.py",
+    "tests/test_rules.py"
+  ],
+  "regions": [
+    {
+      "file": "routekit/rules.py",
+      "function": "hub_handling_min"
+    }
+  ],
+  "testing_evidence": "original t1 PASSED; deployed b1 differs from t1 and has no record",
+  "deployment_evidence": "b1 (modified backport) deployed to prod",
+  "metadata_availability": "full",
+  "known_uncertainty": "none",
+  "expected_warnings": [
+    "deployed code differs from the tested commit"
+  ],
+  "safe_resolution_constraints": [],
+  "human_review_required": false,
+  "assertions": [
+    {
+      "type": "patch_id_differs",
+      "a": "fc59cc0ac7d5a339050aff20223dc174ba8ae2d4",
+      "b": "252be45680ca3ebc2c0d5e47213579983c6f054f"
+    },
+    {
+      "type": "note",
+      "ref": "deploy",
+      "commit": "252be45680ca3ebc2c0d5e47213579983c6f054f",
+      "expect": "present"
+    },
+    {
+      "type": "note",
+      "ref": "ci",
+      "commit": "252be45680ca3ebc2c0d5e47213579983c6f054f",
+      "expect": "absent"
+    }
+  ],
+  "id": "38",
+  "sub_entries": [
+    {
+      "original_commits": [
+        "f61d7a0792f3634568bddd92a5319322f866dd22"
+      ],
+      "derived_commits": [
+        "03027d19762359b9250b775f9c69e12487f07c7d"
+      ],
+      "change_relationships": [
+        {
+          "a": "f61d7a0792f3634568bddd92a5319322f866dd22",
+          "b": "03027d19762359b9250b775f9c69e12487f07c7d",
+          "relation": "partial"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "cold_chain_limit_min"
+        }
+      ],
+      "testing_evidence": "original t1 PASSED (synthetic); b1 differs from t1 and has no record",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "backport was modified after cherry-pick; test evidence does not transfer"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_differs",
+          "a": "f61d7a0792f3634568bddd92a5319322f866dd22",
+          "b": "03027d19762359b9250b775f9c69e12487f07c7d"
+        },
+        {
+          "type": "trailer",
+          "commit": "03027d19762359b9250b775f9c69e12487f07c7d",
+          "expect": "valid",
+          "origin": "f61d7a0792f3634568bddd92a5319322f866dd22"
+        }
+      ],
+      "id": "38.b",
+      "catalog_id": 12
+    },
+    {
+      "original_commits": [
+        "e94f317e5924aad69b931d1253a0cfca4669a596",
+        "e70b26983110f7b1f5b1cc434ad70f8a61038386"
+      ],
+      "derived_commits": [
+        "46c6ac892efb68321c5e6ece7d6ab57d846d3502",
+        "d025ab0b3d06f442c40351b0b32a2d12742452bc"
+      ],
+      "change_relationships": [
+        {
+          "a": "e94f317e5924aad69b931d1253a0cfca4669a596",
+          "b": "46c6ac892efb68321c5e6ece7d6ab57d846d3502",
+          "relation": "identical"
+        },
+        {
+          "a": "e70b26983110f7b1f5b1cc434ad70f8a61038386",
+          "b": "d025ab0b3d06f442c40351b0b32a2d12742452bc",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py",
+        "docs/changelog.md"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "fence_snap_tolerance_m"
+        },
+        {
+          "file": "routekit/rules.py",
+          "function": "parcel_weight_class"
+        }
+      ],
+      "testing_evidence": "uat PASSED recorded on c2 against the old base",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "rebased onto a different base; evidence is for the old base"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "patch_id_equal",
+          "a": "e70b26983110f7b1f5b1cc434ad70f8a61038386",
+          "b": "d025ab0b3d06f442c40351b0b32a2d12742452bc"
+        },
+        {
+          "type": "ancestor",
+          "a": "921a0b58ba150a037ce265f1d9fbfab0c28b404d",
+          "b": "d025ab0b3d06f442c40351b0b32a2d12742452bc",
+          "expect": true
+        },
+        {
+          "type": "ancestor",
+          "a": "921a0b58ba150a037ce265f1d9fbfab0c28b404d",
+          "b": "branch:target",
+          "expect": false
+        }
+      ],
+      "id": "38.a",
+      "catalog_id": 59
+    },
+    {
+      "original_commits": [
+        "687e0d9d717ba43c60dd6705d80d7ff434b4a5b9",
+        "ae737e14f766ec8f10788af974b33e4051cf76c4"
+      ],
+      "derived_commits": [
+        "6db1664b97a6d8e4baa7857b90665222731059b8"
+      ],
+      "change_relationships": [
+        {
+          "a": "687e0d9d717ba43c60dd6705d80d7ff434b4a5b9",
+          "b": "6db1664b97a6d8e4baa7857b90665222731059b8",
+          "relation": "combined"
+        },
+        {
+          "a": "ae737e14f766ec8f10788af974b33e4051cf76c4",
+          "b": "6db1664b97a6d8e4baa7857b90665222731059b8",
+          "relation": "combined"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "service_time_s"
+        },
+        {
+          "file": "routekit/rules.py",
+          "function": "vehicle_capacity_kg"
+        },
+        {
+          "file": "routekit/rules.py",
+          "function": "max_stops_per_route"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "squash dropped the cherry-pick trailers",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "squashed backport; trailers lost"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "trailer",
+          "commit": "6db1664b97a6d8e4baa7857b90665222731059b8",
+          "expect": "missing"
+        },
+        {
+          "type": "diff_subset",
+          "small": [
+            "687e0d9d717ba43c60dd6705d80d7ff434b4a5b9",
+            "ae737e14f766ec8f10788af974b33e4051cf76c4"
+          ],
+          "big": "6db1664b97a6d8e4baa7857b90665222731059b8"
+        }
+      ],
+      "id": "38.c",
+      "catalog_id": 19
+    },
+    {
+      "original_commits": [
+        "0b815823d039237e014b5f2b0a46ed235064ccda"
+      ],
+      "derived_commits": [
+        "3d87bdd2577db6c47a509228f2b628e35300e798",
+        "e70c737f384c9f48fa12d4d00cd0cd3c9d73e3fd"
+      ],
+      "change_relationships": [
+        {
+          "a": "0b815823d039237e014b5f2b0a46ed235064ccda",
+          "b": "3d87bdd2577db6c47a509228f2b628e35300e798",
+          "relation": "partial"
+        },
+        {
+          "a": "3d87bdd2577db6c47a509228f2b628e35300e798",
+          "b": "e70c737f384c9f48fa12d4d00cd0cd3c9d73e3fd",
+          "relation": "identical"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "rest_break_min"
+        }
+      ],
+      "testing_evidence": "none",
+      "deployment_evidence": "none",
+      "metadata_availability": "b1 trailer names m1 only; t1 is reachable through m1's trailer",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "backport of a modified backport; origin chain has two hops"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "trailer",
+          "commit": "e70c737f384c9f48fa12d4d00cd0cd3c9d73e3fd",
+          "expect": "valid",
+          "origin": "3d87bdd2577db6c47a509228f2b628e35300e798"
+        },
+        {
+          "type": "trailer",
+          "commit": "3d87bdd2577db6c47a509228f2b628e35300e798",
+          "expect": "valid",
+          "origin": "0b815823d039237e014b5f2b0a46ed235064ccda"
+        }
+      ],
+      "id": "38.d",
+      "catalog_id": 17
+    },
+    {
+      "original_commits": [
+        "389aa396ceaf4122f772c5fe307b45f3416f02d7"
+      ],
+      "derived_commits": [
+        "0dd0960002e210538e503576737b5fe3b6c3b189"
+      ],
+      "change_relationships": [
+        {
+          "a": "389aa396ceaf4122f772c5fe307b45f3416f02d7",
+          "b": "0dd0960002e210538e503576737b5fe3b6c3b189",
+          "relation": "unrelated"
+        }
+      ],
+      "files": [
+        "routekit/rules.py",
+        "tests/test_rules.py"
+      ],
+      "regions": [
+        {
+          "file": "routekit/rules.py",
+          "function": "geofence_buffer_m"
+        }
+      ],
+      "testing_evidence": "t1 PASSED; source changed again in t2, which has no record",
+      "deployment_evidence": "none",
+      "metadata_availability": "full",
+      "known_uncertainty": "none",
+      "expected_warnings": [
+        "tested code was modified afterwards"
+      ],
+      "safe_resolution_constraints": [],
+      "human_review_required": false,
+      "assertions": [
+        {
+          "type": "tree_differs",
+          "a": "389aa396ceaf4122f772c5fe307b45f3416f02d7",
+          "b": "0dd0960002e210538e503576737b5fe3b6c3b189",
+          "file": "routekit/rules.py"
+        },
+        {
+          "type": "note",
+          "ref": "ci",
+          "commit": "0dd0960002e210538e503576737b5fe3b6c3b189",
+          "expect": "absent"
+        }
+      ],
+      "id": "38.e",
+      "catalog_id": 26
+    }
+  ],
+  "patch_ids": {
+    "@S038.t1": "09abcc1bcf415230bcc4f82ec78cbffd78999dbd",
+    "@S038.b1": "b7af088fbbe12d0e466657759e2b4f8b97dfa4a0",
+    "@S038.c12_t1": "38060df4d4086fee7fafff322cdefa7e087f9daa",
+    "@S038.c12_b1": "81b43caaaf4662aaeaed2910ade2503b62f0e2f8",
+    "@S038.c59_c1": "5faa98832c8a21b9a558b047b7d4fe9c76a8ff83",
+    "@S038.c59_c2": "ebd9f7754ff8fbb3819287528a437d2d285aa093",
+    "@S038.c59_n1": "5faa98832c8a21b9a558b047b7d4fe9c76a8ff83",
+    "@S038.c59_n2": "ebd9f7754ff8fbb3819287528a437d2d285aa093",
+    "@S038.c19_t1": "cb7057e7d146cc83fdf33ddf6d072b8a506f36b4",
+    "@S038.c19_t2": "a7c9d5c15dd66f34329b5743322471d3faf3d2e5",
+    "@S038.c19_sq": "957efae40eee65f446dcb8ca039a33dd0e85a04b",
+    "@S038.c17_t1": "1e95306b6d52695d8ac32eda8ddc60b2a7172651",
+    "@S038.c17_m1": "6348d4dd3849880993ed2bd7de744f594cbdda5a",
+    "@S038.c17_b1": "c730be97178c37885d930d2bd2bbb17c119d2aaa",
+    "@S038.c26_t1": "cd00a8f0063102a0352912410da2ab0bc4b8c73c",
+    "@S038.c26_t2": "0f3dea15f6ddd0906b9245836ed958c43d8caa6b"
+  },
+  "commit_labels": {
+    "S038.F": "2fe6e8dd4d5f5431d91cd454ab4328007e7b1001",
+    "S038.b0": "5955b66fbd1ed30a3489380c7a846c19194667c2",
+    "S038.b1": "252be45680ca3ebc2c0d5e47213579983c6f054f",
+    "S038.c12_b0": "b179add4358d5ae5b1897ac4fa22285f763ddd7e",
+    "S038.c12_b1": "03027d19762359b9250b775f9c69e12487f07c7d",
+    "S038.c12_t1": "f61d7a0792f3634568bddd92a5319322f866dd22",
+    "S038.c12_t2": "33b58949ea1b3f76cb6cc2bebecf0f697f1b64ad",
+    "S038.c17_b1": "e70c737f384c9f48fa12d4d00cd0cd3c9d73e3fd",
+    "S038.c17_m1": "3d87bdd2577db6c47a509228f2b628e35300e798",
+    "S038.c17_t1": "0b815823d039237e014b5f2b0a46ed235064ccda",
+    "S038.c17_t2": "524690170c69021062857832943734e61d4a4f3e",
+    "S038.c19_b1": "4c39cb124968adb84da1b31f7cbe0ac79853205e",
+    "S038.c19_b2": "05ce0309d08bb9fe4c7747b4697453dfee145bae",
+    "S038.c19_b3": "a9f658f16e51c328593479e086c06d7a2cf57a9c",
+    "S038.c19_sq": "6db1664b97a6d8e4baa7857b90665222731059b8",
+    "S038.c19_t1": "687e0d9d717ba43c60dd6705d80d7ff434b4a5b9",
+    "S038.c19_t2": "ae737e14f766ec8f10788af974b33e4051cf76c4",
+    "S038.c19_t3": "2a3e0957c98579757c1a96ee1fb058d58e327dbc",
+    "S038.c26_b1": "d7062fbead1c100f6c10f0508eb688d063017fb3",
+    "S038.c26_t1": "389aa396ceaf4122f772c5fe307b45f3416f02d7",
+    "S038.c26_t2": "0dd0960002e210538e503576737b5fe3b6c3b189",
+    "S038.c59_c1": "e94f317e5924aad69b931d1253a0cfca4669a596",
+    "S038.c59_c2": "e70b26983110f7b1f5b1cc434ad70f8a61038386",
+    "S038.c59_f2": "921a0b58ba150a037ce265f1d9fbfab0c28b404d",
+    "S038.c59_n1": "46c6ac892efb68321c5e6ece7d6ab57d846d3502",
+    "S038.c59_n2": "d025ab0b3d06f442c40351b0b32a2d12742452bc",
+    "S038.c59_t1": "139045db8eaba3880d8bef64db1cdbb90e219d9c",
+    "S038.t1": "fc59cc0ac7d5a339050aff20223dc174ba8ae2d4",
+    "S038.t2": "f7e041c2d346288721ae33a38cdc9786462f3c4a"
+  }
+}

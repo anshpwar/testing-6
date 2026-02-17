@@ -1,0 +1,65 @@
+scenario_id: S046
+repo_id: testing-6
+title: Notes ref disagrees with the primary notes
+difficulty: 4
+primary_catalog_id: 46
+catalog_ids:
+- 46
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S028/base
+  target: scenario/S028/target
+  all_pairs:
+  - - scenario/S028/base
+    - scenario/S028/target
+  additional_sides: {}
+fork_commit: '@S028.F'
+expected_conflicted_files:
+- routekit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile:
+  name: conflicting-notes
+  inject_notes: refs/notes/ci-mirror
+  effect: second ci notes ref disagrees with the first
+sits_on:
+- S028
+branches:
+- scenario/S028/base
+- scenario/S028/target
+id: '46'
+original_commits:
+- '@S028.t1'
+derived_commits:
+- '@S028.b1'
+change_relationships:
+- a: '@S028.t1'
+  b: '@S028.b1'
+  relation: unrelated
+files:
+- routekit/rules.py
+- tests/test_rules.py
+regions:
+- file: routekit/rules.py
+  function: hub_handling_min
+testing_evidence: b1 carries a copy of t1's PASSED record; b1 differs from t1
+deployment_evidence: same code deployed under two commit hashes
+metadata_availability: second ci notes ref disagrees with the first
+known_uncertainty: evidence is reachable only as far as the clone profile allows
+expected_warnings:
+- 'clone profile conflicting-notes: second ci notes ref disagrees with the first'
+- evidence from another branch does not cover this version
+safe_resolution_constraints: []
+human_review_required: true
+assertions:
+- type: profile_effect
+  profile: conflicting-notes
+sub_entries: []
+patch_ids:
+  '@S028.t1': 09abcc1bcf415230bcc4f82ec78cbffd78999dbd
+  '@S028.b1': 64136ed0aeeb19a04b4913762ca2b0cc25f6962c
+  '@S028.c18_t1': 557d0d38c74734ce510def3702ddacfb1121012c
+  '@S028.c18_b1': 557d0d38c74734ce510def3702ddacfb1121012c
+  '@S028.c18_b2': null
+  '@S028.c40_t1': cb7057e7d146cc83fdf33ddf6d072b8a506f36b4
+  '@S028.c40_b1': cb7057e7d146cc83fdf33ddf6d072b8a506f36b4

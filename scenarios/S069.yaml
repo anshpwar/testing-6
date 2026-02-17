@@ -1,0 +1,77 @@
+scenario_id: S069
+repo_id: testing-6
+title: Rule removed on one branch while the other keeps editing it
+difficulty: 3
+primary_catalog_id: 69
+catalog_ids:
+- 69
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S069/base
+  target: scenario/S069/target
+  all_pairs:
+  - - scenario/S069/base
+    - scenario/S069/target
+  - - scenario/S069/base
+    - scenario/S069/third
+  - - scenario/S069/base
+    - scenario/S069/fourth
+  - - scenario/S069/target
+    - scenario/S069/third
+  - - scenario/S069/target
+    - scenario/S069/fourth
+  - - scenario/S069/third
+    - scenario/S069/fourth
+  additional_sides:
+    third: scenario/S069/third
+    fourth: scenario/S069/fourth
+fork_commit: '@S069.F'
+expected_conflicted_files:
+- routekit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S069/base
+- scenario/S069/fourth
+- scenario/S069/target
+- scenario/S069/third
+original_commits:
+- '@S069.x_base'
+derived_commits:
+- '@S069.x_target'
+- '@S069.x_third'
+- '@S069.x_fourth'
+change_relationships:
+- a: '@S069.x_base'
+  b: '@S069.x_target'
+  relation: unrelated
+- a: '@S069.x_base'
+  b: '@S069.x_third'
+  relation: unrelated
+- a: '@S069.x_base'
+  b: '@S069.x_fourth'
+  relation: unrelated
+files:
+- routekit/rules.py
+- tests/test_rules.py
+regions:
+- file: routekit/rules.py
+  function: route_timeout_ms
+testing_evidence: none
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- 4 developers changed the same schedule independently
+safe_resolution_constraints:
+- no side may be dropped silently
+human_review_required: true
+assertions: []
+id: '69'
+sub_entries: []
+patch_ids:
+  '@S069.x_base': 7f90af7c6331dec6bbcf01c24723fd24301d0071
+  '@S069.x_target': 5c3a886ee88890ade7c0f2adb27b192eb951eacd
+  '@S069.x_third': e3bca4676feff75a08424e232da68f9e3ad7ce80
+  '@S069.x_fourth': e59b9c8df660972ee96e97a5f689c4c25c9cdd48

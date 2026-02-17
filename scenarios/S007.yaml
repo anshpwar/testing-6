@@ -1,0 +1,155 @@
+scenario_id: S007
+repo_id: testing-6
+title: Two small commits on one branch and a combined commit on the other
+difficulty: 4
+primary_catalog_id: 7
+catalog_ids:
+- 7
+- 14
+- 84
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S007/base
+  target: scenario/S007/target
+  all_pairs:
+  - - scenario/S007/base
+    - scenario/S007/target
+  additional_sides:
+    c14_rel2: scenario/S007/c14_rel2
+    c14_rel3: scenario/S007/c14_rel3
+fork_commit: '@S007.F'
+expected_conflicted_files:
+- routekit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S007/base
+- scenario/S007/c14_rel2
+- scenario/S007/c14_rel3
+- scenario/S007/target
+original_commits:
+- '@S007.t1'
+- '@S007.t2'
+derived_commits:
+- '@S007.b1'
+change_relationships:
+- a: '@S007.t1'
+  b: '@S007.b1'
+  relation: combined
+- a: '@S007.t2'
+  b: '@S007.b1'
+  relation: combined
+files:
+- routekit/rules.py
+- tests/test_rules.py
+regions:
+- file: routekit/rules.py
+  function: vehicle_capacity_kg
+- file: routekit/rules.py
+  function: max_stops_per_route
+- file: routekit/rules.py
+  function: rest_break_min
+testing_evidence: none
+deployment_evidence: none
+metadata_availability: side refs scenario/S007/rel2 and /rel3 hold the other backports
+known_uncertainty: true origin recoverable only by patch-id
+expected_warnings:
+- combined commit hides two independent origins
+safe_resolution_constraints: []
+human_review_required: true
+assertions:
+- type: diff_subset
+  small:
+  - '@S007.t1'
+  - '@S007.t2'
+  big: '@S007.b1'
+id: '7'
+sub_entries:
+- original_commits:
+  - '@S007.c14_t1'
+  derived_commits:
+  - '@S007.c14_b1'
+  - '@S007.c14_b2'
+  - '@S007.c14_b3'
+  change_relationships:
+  - a: '@S007.c14_t1'
+    b: '@S007.c14_b1'
+    relation: identical
+  - a: '@S007.c14_t1'
+    b: '@S007.c14_b2'
+    relation: identical
+  - a: '@S007.c14_t1'
+    b: '@S007.c14_b3'
+    relation: identical
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: routekit/rules.py
+    function: geofence_buffer_m
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: side refs scenario/S007/rel2 and /rel3 hold the other backports
+  known_uncertainty: none
+  expected_warnings:
+  - same change backported to three release lines
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_equal
+    a: '@S007.c14_b2'
+    b: '@S007.c14_b3'
+  - type: trailer
+    commit: '@S007.c14_b3'
+    expect: valid
+    origin: '@S007.c14_t1'
+  id: 7.a
+  catalog_id: 14
+- original_commits:
+  - '@S007.c84_t1'
+  derived_commits:
+  - '@S007.c84_b1'
+  change_relationships:
+  - a: '@S007.c84_t1'
+    b: '@S007.c84_b1'
+    relation: identical
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: routekit/rules.py
+    function: priority_surcharge_cents
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: message trailer names a nonexistent commit; provenance note names an unrelated
+    commit
+  known_uncertainty: true origin recoverable only by patch-id
+  expected_warnings:
+  - no provenance reference resolves to the true origin
+  safe_resolution_constraints: []
+  human_review_required: true
+  assertions:
+  - type: patch_id_equal
+    a: '@S007.c84_t1'
+    b: '@S007.c84_b1'
+  - type: trailer
+    commit: '@S007.c84_b1'
+    expect: invalid
+    origin: '@S007.c84_t1'
+  - type: note
+    ref: provenance
+    commit: '@S007.c84_b1'
+    expect: present
+  id: 7.b
+  catalog_id: 84
+patch_ids:
+  '@S007.t1': 88917f3b9173526afdefb5f0999c8f99fb252b2f
+  '@S007.t2': 8f3ba691ec572abc74755b6001808485d72b1cb4
+  '@S007.b1': e5c1a00948d684735045b7c031e4e1264522b993
+  '@S007.c14_t1': eb641d18d74cb248ba79e45435f18d2254b19156
+  '@S007.c14_b1': 26146fa10ae22f8ef4c689ea6c9ff160ee02d4e5
+  '@S007.c14_b2': 38c0345ef9bd2cff9eb234b47eca6dd52378c998
+  '@S007.c14_b3': 38c0345ef9bd2cff9eb234b47eca6dd52378c998
+  '@S007.c84_t1': 0f3dea15f6ddd0906b9245836ed958c43d8caa6b
+  '@S007.c84_b1': 8599b123ee1053b5655d7f5808bed3a1ebf11730

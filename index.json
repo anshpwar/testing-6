@@ -1,0 +1,108 @@
+[
+  {
+    "scenario_id": "S018",
+    "catalog_ids": [
+      18
+    ],
+    "difficulty": 1,
+    "expected_git_outcome": "EVIDENCE_ONLY",
+    "title": "Unreferenced test record for a rewritten commit"
+  },
+  {
+    "scenario_id": "S072",
+    "catalog_ids": [
+      72
+    ],
+    "difficulty": 1,
+    "expected_git_outcome": "CONFLICT",
+    "title": "A path is a file on one branch and a directory on the other"
+  },
+  {
+    "scenario_id": "S092",
+    "catalog_ids": [
+      92
+    ],
+    "difficulty": 2,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Line-ending conversion on one branch and a logic fix on the other"
+  },
+  {
+    "scenario_id": "S069",
+    "catalog_ids": [
+      69
+    ],
+    "difficulty": 3,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Rule removed on one branch while the other keeps editing it"
+  },
+  {
+    "scenario_id": "S028",
+    "catalog_ids": [
+      28,
+      18,
+      40
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Source and test records disagree about which commit was verified"
+  },
+  {
+    "scenario_id": "S007",
+    "catalog_ids": [
+      7,
+      14,
+      84
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Two small commits on one branch and a combined commit on the other"
+  },
+  {
+    "scenario_id": "S046",
+    "catalog_ids": [
+      46
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Notes ref disagrees with the primary notes"
+  },
+  {
+    "scenario_id": "S097",
+    "catalog_ids": [
+      97,
+      98,
+      83
+    ],
+    "difficulty": 4,
+    "expected_git_outcome": "CLEAN_BUT_BROKEN",
+    "title": "Header constant changes while a new C source relies on the old value"
+  },
+  {
+    "scenario_id": "S038",
+    "catalog_ids": [
+      38,
+      12,
+      59,
+      19,
+      17,
+      26
+    ],
+    "difficulty": 5,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Long history with repeated edits and mixed provenance"
+  },
+  {
+    "scenario_id": "S055",
+    "catalog_ids": [
+      55,
+      53,
+      54,
+      57,
+      58,
+      45
+    ],
+    "difficulty": 5,
+    "expected_git_outcome": "CONFLICT",
+    "title": "Several branches rework the same schedules"
+  }
+]

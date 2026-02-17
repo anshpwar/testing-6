@@ -1,0 +1,135 @@
+scenario_id: S028
+repo_id: testing-6
+title: Source and test records disagree about which commit was verified
+difficulty: 4
+primary_catalog_id: 28
+catalog_ids:
+- 28
+- 18
+- 40
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S028/base
+  target: scenario/S028/target
+  all_pairs:
+  - - scenario/S028/base
+    - scenario/S028/target
+  additional_sides: {}
+fork_commit: '@S028.F'
+expected_conflicted_files:
+- routekit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S028/base
+- scenario/S028/target
+original_commits:
+- '@S028.t1'
+derived_commits:
+- '@S028.b1'
+change_relationships:
+- a: '@S028.t1'
+  b: '@S028.b1'
+  relation: unrelated
+files:
+- routekit/rules.py
+- tests/test_rules.py
+regions:
+- file: routekit/rules.py
+  function: hub_handling_min
+testing_evidence: b1 carries a copy of t1's PASSED record; b1 differs from t1
+deployment_evidence: same code deployed under two commit hashes
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- evidence from another branch does not cover this version
+safe_resolution_constraints: []
+human_review_required: true
+assertions:
+- type: note_subject_mismatch
+  ref: ci
+  commit: '@S028.b1'
+  subject: '@S028.t1'
+- type: patch_id_differs
+  a: '@S028.t1'
+  b: '@S028.b1'
+id: '28'
+sub_entries:
+- original_commits:
+  - '@S028.c18_t1'
+  derived_commits:
+  - '@S028.c18_b1'
+  - '@S028.c18_b2'
+  change_relationships:
+  - a: '@S028.c18_t1'
+    b: '@S028.c18_b1'
+    relation: identical
+  - a: '@S028.c18_b1'
+    b: '@S028.c18_b2'
+    relation: identical
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: routekit/rules.py
+    function: cold_chain_limit_min
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - second backport adds no change; already present
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: tree_equal
+    a: '@S028.c18_b1'
+    b: '@S028.c18_b2'
+  - type: trailer
+    commit: '@S028.c18_b2'
+    expect: valid
+    origin: '@S028.c18_t1'
+  id: 28.a
+  catalog_id: 18
+- original_commits:
+  - '@S028.c40_t1'
+  derived_commits:
+  - '@S028.c40_b1'
+  change_relationships:
+  - a: '@S028.c40_t1'
+    b: '@S028.c40_b1'
+    relation: identical
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: routekit/rules.py
+    function: service_time_s
+  testing_evidence: t1 PASSED in prod; b1 has the same code but no record
+  deployment_evidence: same code deployed under two commit hashes
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - identical code under different hashes; evidence transfers only via tree equality
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: function_equal
+    a: '@S028.c40_t1'
+    b: '@S028.c40_b1'
+    file: routekit/rules.py
+    function: service_time_s
+  - type: commit_differs
+    a: '@S028.c40_t1'
+    b: '@S028.c40_b1'
+  id: 28.b
+  catalog_id: 40
+patch_ids:
+  '@S028.t1': 09abcc1bcf415230bcc4f82ec78cbffd78999dbd
+  '@S028.b1': 64136ed0aeeb19a04b4913762ca2b0cc25f6962c
+  '@S028.c18_t1': 557d0d38c74734ce510def3702ddacfb1121012c
+  '@S028.c18_b1': 557d0d38c74734ce510def3702ddacfb1121012c
+  '@S028.c18_b2': null
+  '@S028.c40_t1': cb7057e7d146cc83fdf33ddf6d072b8a506f36b4
+  '@S028.c40_b1': cb7057e7d146cc83fdf33ddf6d072b8a506f36b4

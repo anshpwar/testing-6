@@ -1,0 +1,131 @@
+scenario_id: S097
+repo_id: testing-6
+title: Header constant changes while a new C source relies on the old value
+difficulty: 4
+primary_catalog_id: 97
+catalog_ids:
+- 97
+- 98
+- 83
+expected_git_outcome: CLEAN_BUT_BROKEN
+merge_pair:
+  base: scenario/S097/base
+  target: scenario/S097/target
+  all_pairs:
+  - - scenario/S097/base
+    - scenario/S097/target
+  additional_sides: {}
+fork_commit: '@S097.F'
+expected_conflicted_files: []
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S097/base
+- scenario/S097/target
+original_commits:
+- '@S097.k97b'
+derived_commits:
+- '@S097.k97t'
+change_relationships:
+- a: '@S097.k97b'
+  b: '@S097.k97t'
+  relation: unrelated
+files:
+- c/include/rk_config.h
+- c/src/route.c
+- c/src/eta_97.c
+- c/tests/test_eta_97.c
+regions:
+- file: c/include/rk_config.h
+  macro: RK_HOP_PENALTY_S
+- file: c/src/route.c
+  function: edge_cost
+testing_evidence: none
+deployment_evidence: none
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- clean merge; the unchanged route.c now adds a different per-hop penalty than the new ETA harness was
+  written against
+safe_resolution_constraints:
+- Git cannot detect this; only the C test run can
+- recompute the expected ETA values in test_eta_97.c for the new penalty
+human_review_required: false
+assertions:
+- type: merge_then_tests
+  expect: fail
+  suites:
+  - c
+id: '97'
+sub_entries:
+- original_commits:
+  - '@S097.c98_k98b'
+  derived_commits:
+  - '@S097.c98_k98t'
+  change_relationships:
+  - a: '@S097.c98_k98b'
+    b: '@S097.c98_k98t'
+    relation: unrelated
+  files:
+  - c/include/rk_route.h
+  - routekit/native.py
+  - routekit/consumer_98.py
+  regions:
+  - file: c/include/rk_route.h
+    struct: rk_route
+  - file: routekit/native.py
+    class: Route
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - clean merge; the new module mirrors the old struct layout and no longer matches the exported sizeof
+  safe_resolution_constraints:
+  - Git cannot detect this; only the test run can
+  - reuse native.Route instead of a second mirrored Structure
+  human_review_required: false
+  assertions:
+  - type: merge_then_tests
+    expect: fail
+    suites:
+    - unit
+  id: 97.a
+  catalog_id: 98
+- original_commits:
+  - '@S097.c83_k83b'
+  derived_commits:
+  - '@S097.c83_k83t'
+  change_relationships:
+  - a: '@S097.c83_k83b'
+    b: '@S097.c83_k83t'
+    relation: unrelated
+  files:
+  - routekit/contract.py
+  - routekit/consumer_83.py
+  regions:
+  - file: routekit/contract.py
+    function: build_summary
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - clean textual merge; the integrated code fails (new consumer reads the renamed key)
+  safe_resolution_constraints:
+  - Git cannot detect this; only the test run can
+  human_review_required: false
+  assertions:
+  - type: merge_then_tests
+    expect: fail
+    suites:
+    - unit
+  id: 97.b
+  catalog_id: 83
+patch_ids:
+  '@S097.k97b': 39ae18a19d905fc4c3515f79fdb8a296f317d232
+  '@S097.k97t': 70718ee7614a92265736a6ba9cda705ee82f024c
+  '@S097.c98_k98b': 5146f77e3e4dce2922b59fb7bab41ff52f8af358
+  '@S097.c98_k98t': 08cdc18329f721d056ca2964010f60c54adb62db
+  '@S097.c83_k83b': 9b3edbf0a5e63cfefa97afa04d48347e8a59d5c8
+  '@S097.c83_k83t': 65c07f736d9658e481f9c590febd150bb99f5f3b

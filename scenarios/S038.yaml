@@ -1,0 +1,273 @@
+scenario_id: S038
+repo_id: testing-6
+title: Long history with repeated edits and mixed provenance
+difficulty: 5
+primary_catalog_id: 38
+catalog_ids:
+- 38
+- 12
+- 59
+- 19
+- 17
+- 26
+expected_git_outcome: CONFLICT
+merge_pair:
+  base: scenario/S038/base
+  target: scenario/S038/target
+  all_pairs:
+  - - scenario/S038/base
+    - scenario/S038/target
+  additional_sides:
+    c59_newbase: scenario/S038/c59_newbase
+    c17_mid: scenario/S038/c17_mid
+fork_commit: '@S038.F'
+expected_conflicted_files:
+- routekit/rules.py
+- tests/test_rules.py
+validation_method: merge
+clone_profile: full
+branches:
+- scenario/S038/base
+- scenario/S038/c17_mid
+- scenario/S038/c59_newbase
+- scenario/S038/target
+original_commits:
+- '@S038.t1'
+derived_commits:
+- '@S038.b1'
+change_relationships:
+- a: '@S038.t1'
+  b: '@S038.b1'
+  relation: partial
+files:
+- routekit/rules.py
+- tests/test_rules.py
+regions:
+- file: routekit/rules.py
+  function: hub_handling_min
+testing_evidence: original t1 PASSED; deployed b1 differs from t1 and has no record
+deployment_evidence: b1 (modified backport) deployed to prod
+metadata_availability: full
+known_uncertainty: none
+expected_warnings:
+- deployed code differs from the tested commit
+safe_resolution_constraints: []
+human_review_required: false
+assertions:
+- type: patch_id_differs
+  a: '@S038.t1'
+  b: '@S038.b1'
+- type: note
+  ref: deploy
+  commit: '@S038.b1'
+  expect: present
+- type: note
+  ref: ci
+  commit: '@S038.b1'
+  expect: absent
+id: '38'
+sub_entries:
+- original_commits:
+  - '@S038.c12_t1'
+  derived_commits:
+  - '@S038.c12_b1'
+  change_relationships:
+  - a: '@S038.c12_t1'
+    b: '@S038.c12_b1'
+    relation: partial
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: routekit/rules.py
+    function: cold_chain_limit_min
+  testing_evidence: original t1 PASSED (synthetic); b1 differs from t1 and has no record
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - backport was modified after cherry-pick; test evidence does not transfer
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_differs
+    a: '@S038.c12_t1'
+    b: '@S038.c12_b1'
+  - type: trailer
+    commit: '@S038.c12_b1'
+    expect: valid
+    origin: '@S038.c12_t1'
+  id: 38.b
+  catalog_id: 12
+- original_commits:
+  - '@S038.c59_c1'
+  - '@S038.c59_c2'
+  derived_commits:
+  - '@S038.c59_n1'
+  - '@S038.c59_n2'
+  change_relationships:
+  - a: '@S038.c59_c1'
+    b: '@S038.c59_n1'
+    relation: identical
+  - a: '@S038.c59_c2'
+    b: '@S038.c59_n2'
+    relation: identical
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  - docs/changelog.md
+  regions:
+  - file: routekit/rules.py
+    function: fence_snap_tolerance_m
+  - file: routekit/rules.py
+    function: parcel_weight_class
+  testing_evidence: uat PASSED recorded on c2 against the old base
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - rebased onto a different base; evidence is for the old base
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: patch_id_equal
+    a: '@S038.c59_c2'
+    b: '@S038.c59_n2'
+  - type: ancestor
+    a: '@S038.c59_f2'
+    b: '@S038.c59_n2'
+    expect: true
+  - type: ancestor
+    a: '@S038.c59_f2'
+    b: branch:target
+    expect: false
+  id: 38.a
+  catalog_id: 59
+- original_commits:
+  - '@S038.c19_t1'
+  - '@S038.c19_t2'
+  derived_commits:
+  - '@S038.c19_sq'
+  change_relationships:
+  - a: '@S038.c19_t1'
+    b: '@S038.c19_sq'
+    relation: combined
+  - a: '@S038.c19_t2'
+    b: '@S038.c19_sq'
+    relation: combined
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: routekit/rules.py
+    function: service_time_s
+  - file: routekit/rules.py
+    function: vehicle_capacity_kg
+  - file: routekit/rules.py
+    function: max_stops_per_route
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: squash dropped the cherry-pick trailers
+  known_uncertainty: none
+  expected_warnings:
+  - squashed backport; trailers lost
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: trailer
+    commit: '@S038.c19_sq'
+    expect: missing
+  - type: diff_subset
+    small:
+    - '@S038.c19_t1'
+    - '@S038.c19_t2'
+    big: '@S038.c19_sq'
+  id: 38.c
+  catalog_id: 19
+- original_commits:
+  - '@S038.c17_t1'
+  derived_commits:
+  - '@S038.c17_m1'
+  - '@S038.c17_b1'
+  change_relationships:
+  - a: '@S038.c17_t1'
+    b: '@S038.c17_m1'
+    relation: partial
+  - a: '@S038.c17_m1'
+    b: '@S038.c17_b1'
+    relation: identical
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: routekit/rules.py
+    function: rest_break_min
+  testing_evidence: none
+  deployment_evidence: none
+  metadata_availability: b1 trailer names m1 only; t1 is reachable through m1's trailer
+  known_uncertainty: none
+  expected_warnings:
+  - backport of a modified backport; origin chain has two hops
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: trailer
+    commit: '@S038.c17_b1'
+    expect: valid
+    origin: '@S038.c17_m1'
+  - type: trailer
+    commit: '@S038.c17_m1'
+    expect: valid
+    origin: '@S038.c17_t1'
+  id: 38.d
+  catalog_id: 17
+- original_commits:
+  - '@S038.c26_t1'
+  derived_commits:
+  - '@S038.c26_t2'
+  change_relationships:
+  - a: '@S038.c26_t1'
+    b: '@S038.c26_t2'
+    relation: unrelated
+  files:
+  - routekit/rules.py
+  - tests/test_rules.py
+  regions:
+  - file: routekit/rules.py
+    function: geofence_buffer_m
+  testing_evidence: t1 PASSED; source changed again in t2, which has no record
+  deployment_evidence: none
+  metadata_availability: full
+  known_uncertainty: none
+  expected_warnings:
+  - tested code was modified afterwards
+  safe_resolution_constraints: []
+  human_review_required: false
+  assertions:
+  - type: tree_differs
+    a: '@S038.c26_t1'
+    b: '@S038.c26_t2'
+    file: routekit/rules.py
+  - type: note
+    ref: ci
+    commit: '@S038.c26_t2'
+    expect: absent
+  id: 38.e
+  catalog_id: 26
+patch_ids:
+  '@S038.t1': 09abcc1bcf415230bcc4f82ec78cbffd78999dbd
+  '@S038.b1': b7af088fbbe12d0e466657759e2b4f8b97dfa4a0
+  '@S038.c12_t1': 38060df4d4086fee7fafff322cdefa7e087f9daa
+  '@S038.c12_b1': 81b43caaaf4662aaeaed2910ade2503b62f0e2f8
+  '@S038.c59_c1': 5faa98832c8a21b9a558b047b7d4fe9c76a8ff83
+  '@S038.c59_c2': ebd9f7754ff8fbb3819287528a437d2d285aa093
+  '@S038.c59_n1': 5faa98832c8a21b9a558b047b7d4fe9c76a8ff83
+  '@S038.c59_n2': ebd9f7754ff8fbb3819287528a437d2d285aa093
+  '@S038.c19_t1': cb7057e7d146cc83fdf33ddf6d072b8a506f36b4
+  '@S038.c19_t2': a7c9d5c15dd66f34329b5743322471d3faf3d2e5
+  '@S038.c19_sq': 957efae40eee65f446dcb8ca039a33dd0e85a04b
+  '@S038.c17_t1': 1e95306b6d52695d8ac32eda8ddc60b2a7172651
+  '@S038.c17_m1': 6348d4dd3849880993ed2bd7de744f594cbdda5a
+  '@S038.c17_b1': c730be97178c37885d930d2bd2bbb17c119d2aaa
+  '@S038.c26_t1': cd00a8f0063102a0352912410da2ab0bc4b8c73c
+  '@S038.c26_t2': 0f3dea15f6ddd0906b9245836ed958c43d8caa6b
