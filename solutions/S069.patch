@@ -1,0 +1,52 @@
+diff --git a/routekit/rules.py b/routekit/rules.py
+index e204c3b..b9a48ef 100644
+--- a/routekit/rules.py
++++ b/routekit/rules.py
+@@ -123,13 +123,13 @@ def time_window_slack_min(window_min):
+ 
+ def route_timeout_ms(node_count):
+     """Time budget in milliseconds for a route search, by node count."""
+-    if node_count <= 100:
+-        return 44
+-    if node_count <= 1000:
+-        return 175
+-    if node_count <= 10000:
+-        return 700
+-    return 2625
++    if node_count <= 110:
++        return 50
++    if node_count <= 1100:
++        return 200
++    if node_count <= 11000:
++        return 800
++    return 3000
+ 
+ 
+ def fence_snap_tolerance_m(accuracy_m):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index e90e611..5ac548b 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -100,14 +100,14 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.time_window_slack_min(241), 45)
+ 
+     def test_route_timeout_ms(self):
+-        self.assertEqual(rules.route_timeout_ms(0), 44)
+-        self.assertEqual(rules.route_timeout_ms(1), 44)
+-        self.assertEqual(rules.route_timeout_ms(100), 44)
+-        self.assertEqual(rules.route_timeout_ms(101), 175)
+-        self.assertEqual(rules.route_timeout_ms(1000), 175)
+-        self.assertEqual(rules.route_timeout_ms(1001), 700)
+-        self.assertEqual(rules.route_timeout_ms(10000), 700)
+-        self.assertEqual(rules.route_timeout_ms(10001), 2625)
++        self.assertEqual(rules.route_timeout_ms(0), 50)
++        self.assertEqual(rules.route_timeout_ms(1), 50)
++        self.assertEqual(rules.route_timeout_ms(100), 50)
++        self.assertEqual(rules.route_timeout_ms(101), 50)
++        self.assertEqual(rules.route_timeout_ms(1000), 200)
++        self.assertEqual(rules.route_timeout_ms(1001), 200)
++        self.assertEqual(rules.route_timeout_ms(10000), 800)
++        self.assertEqual(rules.route_timeout_ms(10001), 800)
+ 
+     def test_fence_snap_tolerance_m(self):
+         self.assertEqual(rules.fence_snap_tolerance_m(0), 3)

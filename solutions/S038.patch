@@ -1,0 +1,278 @@
+diff --git a/routekit/rules.py b/routekit/rules.py
+index 74c528d..4b99c62 100644
+--- a/routekit/rules.py
++++ b/routekit/rules.py
+@@ -46,46 +46,46 @@ def vehicle_capacity_kg(vehicle_class):
+ 
+ def max_stops_per_route(vehicle_class):
+     """Stops one trip may contain, by vehicle class."""
+-    if vehicle_class <= 1:
+-        return 11
+     if vehicle_class <= 2:
+-        return 22
++        return 12
+     if vehicle_class <= 3:
+-        return 35
+-    return 53
++        return 25
++    if vehicle_class <= 4:
++        return 40
++    return 60
+ 
+ 
+ def rest_break_min(driving_min):
+     """Break minutes owed after the given continuous driving minutes."""
+-    if driving_min <= 150:
+-        return 21
+-    if driving_min <= 270:
+-        return 41
+-    if driving_min <= 480:
+-        return 91
+-    return 121
++    if driving_min <= 165:
++        return 10
++    if driving_min <= 297:
++        return 20
++    if driving_min <= 528:
++        return 45
++    return 60
+ 
+ 
+ def geofence_buffer_m(zone_class):
+     """Distance in metres from a zone boundary at which a vehicle counts as approaching, by zone class."""
+-    if zone_class <= 1:
+-        return 22
+     if zone_class <= 2:
+-        return 66
++        return 25
+     if zone_class <= 3:
+-        return 132
+-    return 263
++        return 75
++    if zone_class <= 4:
++        return 150
++    return 300
+ 
+ 
+ def priority_surcharge_cents(priority):
+     """Surcharge in cents for expedited handling, by priority level."""
+     if priority <= 1:
+-        return 150
++        return 165
+     if priority <= 2:
+-        return 450
++        return 495
+     if priority <= 3:
+-        return 900
+-    return 1500
++        return 990
++    return 1650
+ 
+ 
+ def late_penalty_cents(minutes_late):
+@@ -134,43 +134,43 @@ def route_timeout_ms(node_count):
+ 
+ def fence_snap_tolerance_m(accuracy_m):
+     """Metres a poor GPS fix may be snapped into a zone, by reported accuracy in metres."""
+-    if accuracy_m <= 5:
+-        return 4
+-    if accuracy_m <= 20:
+-        return 11
+-    if accuracy_m <= 50:
+-        return 27
+-    return 88
++    if accuracy_m <= 6:
++        return 3
++    if accuracy_m <= 22:
++        return 10
++    if accuracy_m <= 55:
++        return 25
++    return 80
+ 
+ 
+ def parcel_weight_class(weight_g):
+     """Vehicle class needed for a parcel, by weight in grams."""
+     if weight_g <= 500:
+-        return 2
++        return 1
+     if weight_g <= 5000:
+-        return 3
++        return 2
+     if weight_g <= 20000:
+-        return 4
+-    return 5
++        return 3
++    return 4
+ 
+ 
+ def hub_handling_min(parcels):
+     """Minutes a vehicle spends at a hub, by parcels transferred."""
+-    if parcels <= 10:
+-        return 31
+-    if parcels <= 100:
+-        return 91
+-    if parcels <= 500:
+-        return 241
+-    return 481
++    if parcels <= 11:
++        return 15
++    if parcels <= 110:
++        return 45
++    if parcels <= 550:
++        return 120
++    return 240
+ 
+ 
+ def cold_chain_limit_min(ambient_c):
+     """Maximum transit minutes for chilled goods, by ambient temperature in Celsius."""
+-    if ambient_c <= 10:
+-        return 961
+-    if ambient_c <= 20:
+-        return 481
+-    if ambient_c <= 30:
+-        return 241
+-    return 121
++    if ambient_c <= 11:
++        return 480
++    if ambient_c <= 22:
++        return 240
++    if ambient_c <= 33:
++        return 120
++    return 60
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index 147a72a..186be58 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -41,35 +41,35 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.vehicle_capacity_kg(4), 3850)
+ 
+     def test_max_stops_per_route(self):
+-        self.assertEqual(rules.max_stops_per_route(0), 11)
+-        self.assertEqual(rules.max_stops_per_route(1), 11)
+-        self.assertEqual(rules.max_stops_per_route(2), 22)
+-        self.assertEqual(rules.max_stops_per_route(3), 35)
+-        self.assertEqual(rules.max_stops_per_route(4), 53)
++        self.assertEqual(rules.max_stops_per_route(0), 12)
++        self.assertEqual(rules.max_stops_per_route(1), 12)
++        self.assertEqual(rules.max_stops_per_route(2), 12)
++        self.assertEqual(rules.max_stops_per_route(3), 25)
++        self.assertEqual(rules.max_stops_per_route(4), 40)
+ 
+     def test_rest_break_min(self):
+-        self.assertEqual(rules.rest_break_min(0), 21)
+-        self.assertEqual(rules.rest_break_min(1), 21)
+-        self.assertEqual(rules.rest_break_min(150), 21)
+-        self.assertEqual(rules.rest_break_min(151), 41)
+-        self.assertEqual(rules.rest_break_min(270), 41)
+-        self.assertEqual(rules.rest_break_min(271), 91)
+-        self.assertEqual(rules.rest_break_min(480), 91)
+-        self.assertEqual(rules.rest_break_min(481), 121)
++        self.assertEqual(rules.rest_break_min(0), 10)
++        self.assertEqual(rules.rest_break_min(1), 10)
++        self.assertEqual(rules.rest_break_min(150), 10)
++        self.assertEqual(rules.rest_break_min(151), 10)
++        self.assertEqual(rules.rest_break_min(270), 20)
++        self.assertEqual(rules.rest_break_min(271), 20)
++        self.assertEqual(rules.rest_break_min(480), 45)
++        self.assertEqual(rules.rest_break_min(481), 45)
+ 
+     def test_geofence_buffer_m(self):
+-        self.assertEqual(rules.geofence_buffer_m(0), 22)
+-        self.assertEqual(rules.geofence_buffer_m(1), 22)
+-        self.assertEqual(rules.geofence_buffer_m(2), 66)
+-        self.assertEqual(rules.geofence_buffer_m(3), 132)
+-        self.assertEqual(rules.geofence_buffer_m(4), 263)
++        self.assertEqual(rules.geofence_buffer_m(0), 25)
++        self.assertEqual(rules.geofence_buffer_m(1), 25)
++        self.assertEqual(rules.geofence_buffer_m(2), 25)
++        self.assertEqual(rules.geofence_buffer_m(3), 75)
++        self.assertEqual(rules.geofence_buffer_m(4), 150)
+ 
+     def test_priority_surcharge_cents(self):
+-        self.assertEqual(rules.priority_surcharge_cents(0), 150)
+-        self.assertEqual(rules.priority_surcharge_cents(1), 150)
+-        self.assertEqual(rules.priority_surcharge_cents(2), 450)
+-        self.assertEqual(rules.priority_surcharge_cents(3), 900)
+-        self.assertEqual(rules.priority_surcharge_cents(4), 1500)
++        self.assertEqual(rules.priority_surcharge_cents(0), 165)
++        self.assertEqual(rules.priority_surcharge_cents(1), 165)
++        self.assertEqual(rules.priority_surcharge_cents(2), 495)
++        self.assertEqual(rules.priority_surcharge_cents(3), 990)
++        self.assertEqual(rules.priority_surcharge_cents(4), 1650)
+ 
+     def test_late_penalty_cents(self):
+         self.assertEqual(rules.late_penalty_cents(0), 200)
+@@ -110,41 +110,41 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.route_timeout_ms(10001), 3000)
+ 
+     def test_fence_snap_tolerance_m(self):
+-        self.assertEqual(rules.fence_snap_tolerance_m(0), 4)
+-        self.assertEqual(rules.fence_snap_tolerance_m(1), 4)
+-        self.assertEqual(rules.fence_snap_tolerance_m(5), 4)
+-        self.assertEqual(rules.fence_snap_tolerance_m(6), 11)
+-        self.assertEqual(rules.fence_snap_tolerance_m(20), 11)
+-        self.assertEqual(rules.fence_snap_tolerance_m(21), 27)
+-        self.assertEqual(rules.fence_snap_tolerance_m(50), 27)
+-        self.assertEqual(rules.fence_snap_tolerance_m(51), 88)
++        self.assertEqual(rules.fence_snap_tolerance_m(0), 3)
++        self.assertEqual(rules.fence_snap_tolerance_m(1), 3)
++        self.assertEqual(rules.fence_snap_tolerance_m(5), 3)
++        self.assertEqual(rules.fence_snap_tolerance_m(6), 3)
++        self.assertEqual(rules.fence_snap_tolerance_m(20), 10)
++        self.assertEqual(rules.fence_snap_tolerance_m(21), 10)
++        self.assertEqual(rules.fence_snap_tolerance_m(50), 25)
++        self.assertEqual(rules.fence_snap_tolerance_m(51), 25)
+ 
+     def test_parcel_weight_class(self):
+-        self.assertEqual(rules.parcel_weight_class(0), 2)
+-        self.assertEqual(rules.parcel_weight_class(1), 2)
+-        self.assertEqual(rules.parcel_weight_class(500), 2)
+-        self.assertEqual(rules.parcel_weight_class(501), 3)
+-        self.assertEqual(rules.parcel_weight_class(5000), 3)
+-        self.assertEqual(rules.parcel_weight_class(5001), 4)
+-        self.assertEqual(rules.parcel_weight_class(20000), 4)
+-        self.assertEqual(rules.parcel_weight_class(20001), 5)
++        self.assertEqual(rules.parcel_weight_class(0), 1)
++        self.assertEqual(rules.parcel_weight_class(1), 1)
++        self.assertEqual(rules.parcel_weight_class(500), 1)
++        self.assertEqual(rules.parcel_weight_class(501), 2)
++        self.assertEqual(rules.parcel_weight_class(5000), 2)
++        self.assertEqual(rules.parcel_weight_class(5001), 3)
++        self.assertEqual(rules.parcel_weight_class(20000), 3)
++        self.assertEqual(rules.parcel_weight_class(20001), 4)
+ 
+     def test_hub_handling_min(self):
+-        self.assertEqual(rules.hub_handling_min(0), 31)
+-        self.assertEqual(rules.hub_handling_min(1), 31)
+-        self.assertEqual(rules.hub_handling_min(10), 31)
+-        self.assertEqual(rules.hub_handling_min(11), 91)
+-        self.assertEqual(rules.hub_handling_min(100), 91)
+-        self.assertEqual(rules.hub_handling_min(101), 241)
+-        self.assertEqual(rules.hub_handling_min(500), 241)
+-        self.assertEqual(rules.hub_handling_min(501), 481)
++        self.assertEqual(rules.hub_handling_min(0), 15)
++        self.assertEqual(rules.hub_handling_min(1), 15)
++        self.assertEqual(rules.hub_handling_min(10), 15)
++        self.assertEqual(rules.hub_handling_min(11), 15)
++        self.assertEqual(rules.hub_handling_min(100), 45)
++        self.assertEqual(rules.hub_handling_min(101), 45)
++        self.assertEqual(rules.hub_handling_min(500), 120)
++        self.assertEqual(rules.hub_handling_min(501), 120)
+ 
+     def test_cold_chain_limit_min(self):
+-        self.assertEqual(rules.cold_chain_limit_min(0), 961)
+-        self.assertEqual(rules.cold_chain_limit_min(1), 961)
+-        self.assertEqual(rules.cold_chain_limit_min(10), 961)
+-        self.assertEqual(rules.cold_chain_limit_min(11), 481)
+-        self.assertEqual(rules.cold_chain_limit_min(20), 481)
+-        self.assertEqual(rules.cold_chain_limit_min(21), 241)
+-        self.assertEqual(rules.cold_chain_limit_min(30), 241)
+-        self.assertEqual(rules.cold_chain_limit_min(31), 121)
++        self.assertEqual(rules.cold_chain_limit_min(0), 480)
++        self.assertEqual(rules.cold_chain_limit_min(1), 480)
++        self.assertEqual(rules.cold_chain_limit_min(10), 480)
++        self.assertEqual(rules.cold_chain_limit_min(11), 480)
++        self.assertEqual(rules.cold_chain_limit_min(20), 240)
++        self.assertEqual(rules.cold_chain_limit_min(21), 240)
++        self.assertEqual(rules.cold_chain_limit_min(30), 120)
++        self.assertEqual(rules.cold_chain_limit_min(31), 120)

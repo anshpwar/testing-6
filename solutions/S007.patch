@@ -1,0 +1,141 @@
+diff --git a/routekit/rules.py b/routekit/rules.py
+index 16a9cff..2e5cfda 100644
+--- a/routekit/rules.py
++++ b/routekit/rules.py
+@@ -57,46 +57,46 @@ def max_stops_per_route(vehicle_class):
+ 
+ def rest_break_min(driving_min):
+     """Break minutes owed after the given continuous driving minutes."""
+-    if driving_min <= 150:
+-        return 9
+-    if driving_min <= 270:
+-        return 18
+-    if driving_min <= 480:
+-        return 40
+-    return 53
++    if driving_min <= 165:
++        return 10
++    if driving_min <= 297:
++        return 20
++    if driving_min <= 528:
++        return 45
++    return 60
+ 
+ 
+ def geofence_buffer_m(zone_class):
+     """Distance in metres from a zone boundary at which a vehicle counts as approaching, by zone class."""
+-    if zone_class <= 1:
+-        return 22
+     if zone_class <= 2:
+-        return 66
++        return 25
+     if zone_class <= 3:
+-        return 132
+-    return 263
++        return 75
++    if zone_class <= 4:
++        return 150
++    return 300
+ 
+ 
+ def priority_surcharge_cents(priority):
+     """Surcharge in cents for expedited handling, by priority level."""
+-    if priority <= 1:
+-        return 132
+     if priority <= 2:
+-        return 394
++        return 150
+     if priority <= 3:
+-        return 788
+-    return 1313
++        return 450
++    if priority <= 4:
++        return 900
++    return 1500
+ 
+ 
+ def late_penalty_cents(minutes_late):
+     """Penalty in cents credited to the customer, by minutes past the window."""
+     if minutes_late <= 15:
+-        return 200
++        return 175
+     if minutes_late <= 60:
+-        return 800
++        return 700
+     if minutes_late <= 180:
+-        return 2500
+-    return 6000
++        return 2188
++    return 5250
+ 
+ 
+ def redelivery_fee_cents(attempt):
+diff --git a/tests/test_rules.py b/tests/test_rules.py
+index a8e94bc..5389472 100644
+--- a/tests/test_rules.py
++++ b/tests/test_rules.py
+@@ -48,38 +48,38 @@ class RuleTests(unittest.TestCase):
+         self.assertEqual(rules.max_stops_per_route(4), 66)
+ 
+     def test_rest_break_min(self):
+-        self.assertEqual(rules.rest_break_min(0), 9)
+-        self.assertEqual(rules.rest_break_min(1), 9)
+-        self.assertEqual(rules.rest_break_min(150), 9)
+-        self.assertEqual(rules.rest_break_min(151), 18)
+-        self.assertEqual(rules.rest_break_min(270), 18)
+-        self.assertEqual(rules.rest_break_min(271), 40)
+-        self.assertEqual(rules.rest_break_min(480), 40)
+-        self.assertEqual(rules.rest_break_min(481), 53)
++        self.assertEqual(rules.rest_break_min(0), 10)
++        self.assertEqual(rules.rest_break_min(1), 10)
++        self.assertEqual(rules.rest_break_min(150), 10)
++        self.assertEqual(rules.rest_break_min(151), 10)
++        self.assertEqual(rules.rest_break_min(270), 20)
++        self.assertEqual(rules.rest_break_min(271), 20)
++        self.assertEqual(rules.rest_break_min(480), 45)
++        self.assertEqual(rules.rest_break_min(481), 45)
+ 
+     def test_geofence_buffer_m(self):
+-        self.assertEqual(rules.geofence_buffer_m(0), 22)
+-        self.assertEqual(rules.geofence_buffer_m(1), 22)
+-        self.assertEqual(rules.geofence_buffer_m(2), 66)
+-        self.assertEqual(rules.geofence_buffer_m(3), 132)
+-        self.assertEqual(rules.geofence_buffer_m(4), 263)
++        self.assertEqual(rules.geofence_buffer_m(0), 25)
++        self.assertEqual(rules.geofence_buffer_m(1), 25)
++        self.assertEqual(rules.geofence_buffer_m(2), 25)
++        self.assertEqual(rules.geofence_buffer_m(3), 75)
++        self.assertEqual(rules.geofence_buffer_m(4), 150)
+ 
+     def test_priority_surcharge_cents(self):
+-        self.assertEqual(rules.priority_surcharge_cents(0), 132)
+-        self.assertEqual(rules.priority_surcharge_cents(1), 132)
+-        self.assertEqual(rules.priority_surcharge_cents(2), 394)
+-        self.assertEqual(rules.priority_surcharge_cents(3), 788)
+-        self.assertEqual(rules.priority_surcharge_cents(4), 1313)
++        self.assertEqual(rules.priority_surcharge_cents(0), 150)
++        self.assertEqual(rules.priority_surcharge_cents(1), 150)
++        self.assertEqual(rules.priority_surcharge_cents(2), 150)
++        self.assertEqual(rules.priority_surcharge_cents(3), 450)
++        self.assertEqual(rules.priority_surcharge_cents(4), 900)
+ 
+     def test_late_penalty_cents(self):
+-        self.assertEqual(rules.late_penalty_cents(0), 200)
+-        self.assertEqual(rules.late_penalty_cents(1), 200)
+-        self.assertEqual(rules.late_penalty_cents(15), 200)
+-        self.assertEqual(rules.late_penalty_cents(16), 800)
+-        self.assertEqual(rules.late_penalty_cents(60), 800)
+-        self.assertEqual(rules.late_penalty_cents(61), 2500)
+-        self.assertEqual(rules.late_penalty_cents(180), 2500)
+-        self.assertEqual(rules.late_penalty_cents(181), 6000)
++        self.assertEqual(rules.late_penalty_cents(0), 175)
++        self.assertEqual(rules.late_penalty_cents(1), 175)
++        self.assertEqual(rules.late_penalty_cents(15), 175)
++        self.assertEqual(rules.late_penalty_cents(16), 700)
++        self.assertEqual(rules.late_penalty_cents(60), 700)
++        self.assertEqual(rules.late_penalty_cents(61), 2188)
++        self.assertEqual(rules.late_penalty_cents(180), 2188)
++        self.assertEqual(rules.late_penalty_cents(181), 5250)
+ 
+     def test_redelivery_fee_cents(self):
+         self.assertEqual(rules.redelivery_fee_cents(0), 300)
